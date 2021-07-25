@@ -1,0 +1,7 @@
+# cf. https://www.gnu.org/software/stow/manual/stow.html#Ignore-Lists
+\.git
+\.gitignore
+^/README.*
+^/LICENSE.*
+^/COPYING
+tags
