@@ -1,0 +1,105 @@
+#!/usr/bin/env bash
+
+
+set line-graphics = default # prettier tree view
+set wrap-lines = no
+set refresh-mode = periodic
+set refresh-interval = 3 # in seconds
+
+# Colors {{{
+color cursor blue color252 bold
+color author yellow default
+color id red default
+color tree.header red default
+# }}}
+
+# Switching Views {{{
+bind generic 1 view-main                        # show main view
+bind generic m view-main                        # show main view
+bind generic s view-status                      # show status view
+bind generic 2 view-status                      # show status view
+bind generic 3 view-log                         # show log view
+bind generic 4 view-tree                        # show tree view
+bind generic 5 view-stash                       # show stash
+# }}}
+
+# Generic/Global Bindings {{{
+bind generic <Ctrl-o> !bash -c "cd $(cat ~/my/zsh/.config/marks/folders | fzf)"
+bind generic R :source ~/.tigrc # reload .tigrc
+bind generic n :/^@@
+bind generic } :/^@@
+# bind generic m none
+# bind generic s none
+bind generic g none
+bind generic C none
+bind generic c none
+bind generic l none
+# bind generic t none
+bind generic y none
+bind generic H none
+bind generic P none
+bind generic w none
+# bind generic <Space> none
+bind generic | none
+# }}}
+
+# Status Mode Bindings {{{
+bind status a !git commit --amend              # ammend staged to last commit or rename last
+bind status m !git commit --amend              # ammend staged to last commit or rename last
+bind status c !git commit -v                    # commit verbosely
+bind status + !git commit --amend               # amend to last commit
+bind status = status-update                     # add/remove/track files in status view
+bind status - status-revert                     # discard changes in tracked file
+bind status x !git clean -xfd                   # delete everything untracked
+bind status D !rm %(file)
+# bind status p !@bash -c "git push -q && tmux display-message '✔️  git push' || tmux display-message '❌ git push'"
+bind status p !>bash -c "git push"
+bind status P !@git push -f
+bind status F !@bash -c "git fetch -f --tags && git pull --rebase"
+
+# disable defaults
+bind status u none
+# }}}
+
+# {{{ Main Mode Bindings
+bind main | !git rebase                         # rebase current branch to remote
+bind main \ !git pull --rebase                  # pull and rebase current branch to remote
+bind main p !git cherry-pick %(commit)          # cherry pick commit
+bind main C-R !git revert %(commit)               # revert commit
+bind main ! !git revert %(commit)               # revert commit
+bind main - !git revert --no-commit %(commit)   # revert commit w/o committing
+bind main i !git rebase --interactive %(commit)^ # interactively rebase commit
+bind main o !git checkout %(commit)             # checkout
+bind main H !git reset --hard %(commit)         # reset hard
+bind main <F4> !git difftool -d %(commit)^!
+
+# Yank Commit numbers
+bind main y !@bash -c "echo -n `echo %(commit) | cut -c 1-7` | xclip -selection c" # copy (yank) commid hash to clipboard (truncated to 7 chars)
+bind main Y !@bash -c "echo -n %(commit) | xclip" # copy (yank) commid hash to clipboard
+
+# Disable some defaults
+bind main H none
+bind main - none
+bind main ! none
+bind main - none
+# }}}
+
+# Stage mode Bindings {{{
+bind stage = status-update                     # add/remove/track files in status view
+bind stage - status-revert                     # discard changes in tracked file
+# }}}
+
+# Stash mode Bindings {{{
+bind stash p ?git stash pop "%(stash)"
+# }}}
+
+# Diff mode Bindings {{{
+bind diff [ :toggle diff-context -3             # Decrease context (-U arg)
+bind diff ] :toggle diff-context +3             # Increase context
+# }}}
+
+# Tree mode Bindings {{{
+bind tree l !git glog -p --pretty=short %(file) # graphical log of a single file
+# }}}
+
+# vim: fdm=marker:
