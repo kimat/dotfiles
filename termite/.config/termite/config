@@ -1,0 +1,248 @@
+# vim:fdm=marker
+[options]
+
+# Lucius-white {{{
+[colors]
+foreground      = #444444
+foreground_bold = #444444
+cursor          = #444444
+background      = #ffffff
+color0  = #444444
+color8  = #444444
+color1  = #af0000
+color9  = #af0000
+color2  = #008700
+color10 = #008700
+color3  = #af5f00
+color11 = #af5f00
+color4  = #005faf
+color12 = #005faf
+color5  = #870087
+color13 = #870087
+color6  = #008787
+color14 = #008787
+color7  = #ffffff
+color15 = #ffffff
+# }}}
+
+# # 3024 Light {{{
+# # special
+# foreground      = #4a4543
+# foreground_bold = #4a4543
+# cursor          = #4a4543
+# background      = #f7f7f7
+# # black
+# color0  = #090300
+# color8  = #5c5855
+# # red
+# color1  = #db2d20
+# color9  = #db2d20
+# # green
+# color2  = #01a252
+# color10 = #01a252
+# # yellow
+# color3  = #fded02
+# color11 = #fded02
+# # blue
+# color4  = #01a0e4
+# color12 = #01a0e4
+# # magenta
+# color5  = #a16a94
+# color13 = #a16a94
+# # cyan
+# color6  = #b5e4f4
+# color14 = #b5e4f4
+# # white
+# color7  = #a5a2a2
+# color15 = #f7f7f7
+# # }}}
+
+# # Ayu {{{
+# [colors]
+# # special
+# foreground      = #d0cec3
+# foreground_bold = #d0cec3
+# cursor          = #d0cec3
+# background      = #212733
+# # black
+# color0  = #191d26
+# color8  = #555555
+# # red
+# color1  = #ea5965
+# color9  = #ea5965
+# # green
+# color2  = #ade46b
+# color10 = #c1e436
+# # yellow
+# color3  = #fec254
+# color11 = #fed96d
+# # blue
+# color4  = #2d91d0
+# color12 = #5555ff
+# # magenta
+# color5  = #c9aeff
+# color13 = #ff55ff
+# # cyan
+# color6  = #86e2bf
+# color14 = #99ffda
+# # white
+# color7  = #bbbbbb
+# color15 = #ffffff
+# # }}}
+
+# # Iceberg {{{
+# # -------
+# [colors]
+# # special
+# foreground      = #c7c9d1
+# foreground_bold = #c7c9d1
+# #cursor          = #c6c8d1
+# #cursor          = green
+# # background      = #161821
+# # black
+# color0  = #161722
+# color8  = #373757
+# # red
+# color1  = #e27878
+# color9  = #f29b9e
+# # green
+# color2  = #b4be82
+# color10 = #ccdba0
+# # yellow
+# color3  = #e2a478
+# color11 = #edbe9d
+# # blue
+# color4  = #84a0c6
+# color12 = #a3bee3
+# # magenta
+# color5  = #a093c7
+# color13 = #c8b5e6
+# # cyan
+# color6  = #89b8c2
+# color14 = #b6d8de
+# # white
+# color7  = #d0d2db
+# color15 = #e9ebf5
+# }}}
+
+# # Seoul-256-dark {{{
+# # --------------
+# [colors]
+# # special
+# foreground      = #d0d0d0
+# # foreground_bold = #d0d0d0
+# cursor          = #d0d0d0
+# background      = #3a3a3a
+# # black
+# color0  = #4e4e4e
+# color8  = #626262
+# # red
+# color1  = #d68787
+# color9  = #d75f87
+# # green
+# color2  = #5f865f
+# color10 = #87af87
+# # yellow
+# color3  = #d8af5f
+# color11 = #ffd787
+# # blue
+# color4  = #85add4
+# color12 = #add4fb
+# # magenta
+# color5  = #d7afaf
+# color13 = #ffafaf
+# # cyan
+# color6  = #87afaf
+# color14 = #87d7d7
+# # white
+# color7  = #d0d0d0
+# color15 = #e4e4e4
+# # }}}
+
+# # Seoul-256-light {{{
+# # ---------------
+# [colors]
+# # special
+# foreground      = #4e4e4e
+# foreground_bold = #4e4e4e
+# cursor          = #4e4e4e
+# background      = #dadada
+# # black
+# color0  = #4e4e4e
+# color8  = #3a3a3a
+# # red
+# color1  = #af5f5f
+# color9  = #870100
+# # green
+# color2  = #5f885f
+# color10 = #005f00
+# # yellow
+# color3  = #af8760
+# color11 = #d8865f
+# # blue
+# color4  = #5f87ae
+# color12 = #0087af
+# # magenta
+# color5  = #875f87
+# color13 = #87025f
+# # cyan
+# color6  = #5f8787
+# color14 = #008787
+# # white
+# color7  = #e4e4e4
+# color15 = #eeeeee
+# # }}}
+
+# # Lucius-light {{{
+# [colors]
+# # special
+# foreground      = #4a4543
+# foreground_bold = #4a4543
+# cursor          = #4a4543
+# background      = #f7f7f7
+# color0  = #090300
+# color8  = #5c5855
+# color1  = #db2d20
+# color9  = #db2d20
+# color2  = #01a252
+# color10 = #01a252
+# color3  = #fded02
+# color11 = #fded02
+# color4  = #01a0e4
+# color12 = #01a0e4
+# color5  = #a16a94
+# color13 = #a16a94
+# color6  = #b5e4f4
+# color14 = #b5e4f4
+# color7  = #a5a2a2
+# color15 = #f7f7f7
+# # }}}
+
+# # Solarized dark color scheme {{{
+# # ---------------------------
+# [colors]
+# foreground = #839496
+# foreground_bold = #eee8d5
+# #foreground_dim = #888888
+# background = #002b36
+# cursor = #93a1a1
+# # if unset, will reverse foreground and background
+# #highlight = #839496
+# # colors from color0 to color254 can be set
+# color0 = #073642
+# color1 = #dc322f
+# color2 = #859900
+# color3 = #b58900
+# color4 = #268bd2
+# color5 = #d33682
+# color6 = #2aa198
+# color7 = #eee8d5
+# color8 = #002b36
+# color9 = #cb4b16
+# color10 = #586e75
+# color11 = #657b83
+# color12 = #839496
+# color13 = #6c71c4
+# color14 = #93a1a1
+# color15 = #fdf6e3
+# # }}}
