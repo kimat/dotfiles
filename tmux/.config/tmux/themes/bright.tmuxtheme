@@ -1,0 +1,30 @@
+# -- Command prompt
+set -g message-style "fg=black,bg=colour179"
+
+# -- Vim mode
+set -g mode-style "fg=black,bg=colour179"
+
+# -- Clock
+set-window-option -g clock-mode-colour colour110 #green
+bind-key Space clock-mode
+
+# -- Frame around active pane
+set -g  pane-active-border-style fg=blue # blue
+set -g  pane-border-style fg=colour252 # blue
+
+# -- Active/Inactive pane background
+set -g window-active-style bg=white
+set -g window-style bg=white
+
+# -- Status bar
+set -g status-position top
+set -g status-bg "#E4E4E4"
+set -g status-right '#[fg=black,bold]%A, the %dth of %B        #[fg=black,bg=colour110]       %H:%M       '
+
+# -- Tabs in status bar
+setw -g window-status-current-format '#[fg=black,bold,bg=colour179]   #W   '
+setw -g window-status-format '#[fg=black,bold,bg=colour252]   #W   '
+
+# -- Message style
+set -g message-style "fg=black,bg=colour110"
+set-option -g display-time 2500

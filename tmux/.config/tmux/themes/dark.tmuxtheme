@@ -1,0 +1,28 @@
+# -- Command prompt
+set-option -g message-bg colour12
+set-option -g message-fg colour0
+
+# -- Clock
+set-window-option -g clock-mode-colour red #green
+bind-key Space clock-mode
+
+# -- Frame around active pane ?
+set-option -g display-panes-active-colour colour33 #blue
+set-option -g display-panes-colour colour166 #orange
+
+# -- Panes ?
+set -g pane-border-fg black
+set -g pane-active-border-fg colour12
+
+# -- Status bar
+set -g status-position top
+set -g status-bg colour234
+set -g status-fg colour137
+set -g status-attr dim
+set -g status-left ''
+set -g status-right '#[fg=blue,bg=black,bold]        %A, the %dth of %B        #[fg=black,bg=blue,bold]       %H:%M       '
+set -g status-right-length 78
+
+# -- Tabs in status bar
+setw -g window-status-current-format '#[fg=black,bold,bg=green]      #W      '
+setw -g window-status-format '#[fg=blue,bright,bg=black]      #W      '
