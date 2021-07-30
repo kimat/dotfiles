@@ -232,6 +232,6 @@ workspace_layout tabbed
 
 # autostart apps {{{
 exec i3-sensible-terminal -e "tmux new-session -A -s main" -t ""
-exec --no-startup-id $HOME/.local/bin/a
+exec --no-startup-id $HOME/my/scripts/bin/a
 exec nm-online --quiet --timeout=60 && sleep 5 && firefox
 # }}}
