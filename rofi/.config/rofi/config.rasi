@@ -1,0 +1,8 @@
+configuration {
+  location: 0;
+  theme: "Arc-Dark";
+  xoffset: 0;
+  yoffset: 0;
+  matching: "fuzzy";
+  modi: "drun";
+}
