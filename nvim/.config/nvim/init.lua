@@ -13,4 +13,4 @@ vim.opt.suffixesadd = ".lua" ]]
 require('better-defaults')
 require('personal-bindings')
 require('plugins')
-require('plugins-bindings')
+require('styling')

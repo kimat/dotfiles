@@ -6,60 +6,49 @@ if not packer_exists then
   return
 end
 
-vim.cmd([[autocmd BufWritePost plugins.lua source <afile> | PackerCompile]])
+-- vim.cmd([[autocmd BufWritePost plugins.lua source <afile> | PackerCompile]])
+vim.cmd('autocmd BufWritePost plugins.lua PackerCompile')
 
 vim.cmd [[packadd packer.nvim]]
-require('packer').startup(
-  {function()
-	-- Packer can manage itself as an optional plugin
-	 use {"wbthomason/packer.nvim", opt = true}
+require('packer').startup({function()
+  -- Packer can manage itself as an optional plugin
+  use {"wbthomason/packer.nvim", opt = true}
 
-	-- Colorschemes
-	-- use {
-	-- 	"nvim-lua/telescope.nvim",
-	-- 	requires = {{"nvim-lua/popup.nvim", opt = true}, {"nvim-lua/plenary.nvim", opt = true}},
-	-- 	cmd = {"Telescope"},
-	-- }
-	  use { 'nvim-telescope/telescope.nvim',
-	    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
-	    cmd = {"Telescope"},
-	    config = function()
-		    local map = vim.api.nvim_set_keymap
-		    map('n', '<Leader>fb', '<Cmd>Telescope buffers<CR>', {noremap = true})
-		    map('n', '<Leader>ff', '<Cmd>Telescope find_files<CR>', {noremap = true})
-	     end,
-     }
-
-	use {'folke/tokyonight.nvim', config = function()
-		vim.g.tokyonight_italic_functions = false
-		vim.g.tokyonight_style = "day"
-		vim.cmd 'colorscheme tokyonight'
-	end}
+  use {'folke/tokyonight.nvim', config = function()
+    vim.g.tokyonight_italic_functions = false
+    vim.g.tokyonight_style = "day"
+    vim.cmd 'colorscheme tokyonight'
+  end}
 
 
-	use {'b3nj5m1n/kommentary',
+  use {'b3nj5m1n/kommentary',
   config = function()
     require('kommentary.config').configure_language("default", {
       prefer_single_line_comments = true,
     })
   end
   }
-	use {'windwp/nvim-autopairs',
+
+  use {'windwp/nvim-autopairs',
     config = function() require('nvim-autopairs').setup() end
   }
 
   -- use 'nvim-treesitter/nvim-treesitter' -- syntax highlight using treesitter
-	use { 'norcalli/nvim-colorizer.lua', config = function()
+  use { 'norcalli/nvim-colorizer.lua', config = function()
     require'colorizer'.setup({ 'css'; 'javascript'; 'html'; })
   end }
-
-  use { 'previm/previm', config = function() vim.g.previm_open_cmd='firefox' end }
 
   use { 'ibhagwan/fzf-lua',
     requires = { 'vijaymarupudi/nvim-fzf'},
     -- 'kyazdani42/nvim-web-devicons' } -- optional for icons
     -- use {'vijaymarupudi/nvim-fzf-commands'}
     config = function()
+      map('n', 'mo', ':FzfLua files<CR>')
+      map('n', 'ml', ':FzfLua buffers<CR>')
+      map('n', 'mt', ":lua require('fzf-lua').files({ cwd = '~/my/tips' })<CR>")
+      map('n', 'mc', ":lua require('fzf-lua').files({ cwd = '~/my/dotfiles' })<CR>")
+      map('n', 'mm', ":lua require('fzf-lua').files({ cwd = '~/my' })<CR>")
+
       require('fzf-lua').setup {
         default_previewer   = "cat",
         preview_layout = "vertical",
@@ -85,6 +74,25 @@ require('packer').startup(
       }}
   end
   }
+
+  -- viml based plugins
+  use { 'previm/previm', config = function() vim.g.previm_open_cmd='firefox' end }
+  use { 'esamattis/slimux',
+    config = function()
+      map('v', '<localleader>e', ':SlimuxREPLSendSelection<CR>')
+      map('n', '<localleader>e',  ':SlimuxREPLSendLine<CR>')
+      map('n', '<localleader>p',  'vip:SlimuxREPLSendSelection<CR>')
+      map('n', '<localleader>x',  ':SlimuxGlobalConfigure<CR>')
+    end
+  }
+  use { 'tpope/vim-fugitive' }
+  use { 'tpope/vim-rails' }
+  use { 'tpope/vim-endwise' }
+  use { 'editorconfig/editorconfig-vim' }
+  use { 'bogado/file-line' }
+  -- reformat text
+  use { 'AndrewRadev/splitjoin.vim' }
+  use { 'godlygeek/tabular' }
 
 
   config = {
