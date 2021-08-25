@@ -22,6 +22,11 @@ map('n', 'L', '<C-W>l')
 -- I don't use z.
 map('n','zz','ZZ')
 
+-- I need a way to copy the current filepath
+map('n','<leader>c',':let @+=expand("%:.").":".line(".")<CR>')
+map('n','<leader>C',':let @+=expand("%:.")<CR>')
+
+
 -- gx should open any link under the cursor
 -- map('n', 'gx', ':silent !firefox --new-tab <C-R>=escape("<C-R><C-F>", "#?&;\|%")<CR><CR>')
 
