@@ -43,11 +43,11 @@ require('packer').startup({function()
     -- 'kyazdani42/nvim-web-devicons' } -- optional for icons
     -- use {'vijaymarupudi/nvim-fzf-commands'}
     config = function()
-      map('n', 'mo', ':FzfLua files<CR>')
-      map('n', 'ml', ':FzfLua buffers<CR>')
-      map('n', 'mt', ":lua require('fzf-lua').files({ cwd = '~/my/tips' })<CR>")
-      map('n', 'mc', ":lua require('fzf-lua').files({ cwd = '~/my/dotfiles' })<CR>")
-      map('n', 'mm', ":lua require('fzf-lua').files({ cwd = '~/my' })<CR>")
+      map('n', 'mo', '<Cmd>FzfLua files<CR>')
+      map('n', 'ml', '<Cmd>FzfLua buffers<CR>')
+      map('n', 'mt', "<Cmd>lua require('fzf-lua').files({ cwd = '~/my/tips' })<CR>")
+      map('n', 'mc', "<Cmd>lua require('fzf-lua').files({ cwd = '~/my/dotfiles' })<CR>")
+      map('n', 'mm', "<Cmd>lua require('fzf-lua').files({ cwd = '~/my' })<CR>")
 
       require('fzf-lua').setup {
         default_previewer   = "cat",
@@ -75,15 +75,17 @@ require('packer').startup({function()
   end
   }
 
+--a
+
   -- viml based plugins
   use { 'previm/previm', config = function() vim.g.previm_open_cmd='firefox' end }
   use { 'esamattis/slimux',
-    config = function()
-      map('v', '<localleader>e', ':SlimuxREPLSendSelection<CR>')
-      map('n', '<localleader>e',  ':SlimuxREPLSendLine<CR>')
-      map('n', '<localleader>p',  'vip:SlimuxREPLSendSelection<CR>')
-      map('n', '<localleader>x',  ':SlimuxGlobalConfigure<CR>')
-    end
+  config = function()
+    map('v', 'ee', ':SlimuxREPLSendSelection<CR>')
+    map('n', 'ee',  '<Cmd>SlimuxREPLSendLine<CR>')
+    map('n', 'ep',  'vip:SlimuxREPLSendSelection<CR>')
+    map('n', 'ex',  '<Cmd>SlimuxGlobalConfigure<CR>')
+  end
   }
   use { 'tpope/vim-fugitive' }
   use { 'tpope/vim-rails' }

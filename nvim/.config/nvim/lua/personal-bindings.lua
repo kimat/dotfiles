@@ -1,5 +1,5 @@
 -- saving is something that I do (too?) often
-map('n', '<esc>', ':w<cr>')
+map('n', '<esc>', '<Cmd>w<cr>')
 
 
 -- leaders
@@ -41,7 +41,7 @@ end
 --   return os.execute("firefox " .. vim.fn.expand("<cWORD>"))
 -- end
 
-map('n', 'gx',':lua os.execute("$BROWSER " .. vim.fn.expand("<cWORD>"))<CR>')
+map('n', 'gx','<Cmd>lua os.execute("$BROWSER " .. vim.fn.expand("<cWORD>"))<CR>')
 
 -- search
 map('n', 'gr', ':grep <C-R><C-W>')
@@ -50,8 +50,9 @@ vim.opt.grepprg="rg --no-heading --vimgrep --hidden -g '!.git'"
 vim.opt.grepformat="%f:%l:%c:%m"
 vim.opt.path="$PWD/**"
 
+map('n', 'es', '<Cmd>e ~/my/tips/stack.md<CR>' )
 
-map('n', 'es', ':e ~/my/tips/stack.md<CR>' )
-map('n', 'eS', ':e ~/my/tips/stack.md<CR>' )
+map('n','ey', '<Cmd>silent !firefox-copy-current-page-as-markdown<CR>')
+map('n','eY', '<Cmd>silent !firefox-copy-current-page-as-markdown && firefox-send ctrl+w<CR>')
 
 -- https://www.lua.org/pil/3.4.html
