@@ -3,16 +3,16 @@
 ## Setup
 
 ```sh
-stow --no-folding htop -t ~ -v
-stow --no-folding stow -t ~ -v
-
-stow --no-folding termite -t ~ -v
-stow --no-folding alacritty -t ~ -v
-
-stow --no-folding tig -t ~ -v
-stow --no-folding tmux -t ~ -v
+find * -maxdepth 0 -type d -exec stow {} \;
+# uninstall
+find * -maxdepth 0 -type d -exec stow -D {} \;
 ```
 
 ## Screenshots
 
 ![screenshot](https://raw.githubusercontent.com/kimat/images/master/tmux.png)
+
+
+## Credits
+
+- [Using GNU Stow to manage your dotfiles](http://brandon.invergo.net/news/2012-05-26-using-gnu-stow-to-manage-your-dotfiles.html)
