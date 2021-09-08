@@ -1,3 +1,5 @@
+-- vim.opt == set ...
+-- vim.g == let ...
 -- so I know on which line the cursor is
 vim.opt.cursorline = true
 
@@ -8,7 +10,7 @@ vim.opt.fileencodings = "utf-8"
 -- searching should be case insensitive it contains a capital in it
 vim.opt.ignorecase = true -- Ignore case
 vim.opt.smartcase = true
--- vim.opt.nohlsearch = true
+vim.o.hlsearch = false
 
 -- searching should be visually sound
 opt.ignorecase = true
