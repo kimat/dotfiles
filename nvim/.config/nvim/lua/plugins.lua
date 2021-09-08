@@ -192,6 +192,7 @@ require('packer').startup({
 
         require('fzf-lua').setup {
           default_previewer = "cat",
+          files = {fzf_ansi = '', file_icons = false, git_icons = false},
           preview_layout = "vertical",
           -- TODO bat theme not working because bright?
           -- bat = {
