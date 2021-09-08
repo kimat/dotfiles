@@ -13,25 +13,69 @@ vim.cmd('autocmd BufWritePost plugins.lua PackerCompile')
 vim.cmd [[packadd packer.nvim]]
 require('packer').startup({
   function()
+    use {
+      'nvim-treesitter/nvim-treesitter',
+      run = ':TSUpdate',
+      config = function()
+        -- set foldmethod=expr
+        -- set foldexpr=nvim_treesitter#foldexpr()
+        -- require'nvim-treesitter.install'.compilers = {'gcc'}
+        vim.wo.foldmethod = 'expr'
+        vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+        require'nvim-treesitter.configs'.setup {
+          textobjects = {enable = true},
+          rainbow = {enable = true},
+          indent = {enable = true, disable = {}},
+          folding = {enable = true},
+          highlight = {
+            ensure_installed = "maintained",
+            enable = true,
+            additional_vim_regex_highlighting = false
+          },
+          ensure_installed = {
+            "dockerfile", "html", "bash", "javascript", "json", "lua", "nix",
+            "ruby", "vim", "yaml", "markdown"
+          }
+        }
+      end
+    }
+    if pcall(require, "nvim-treesitter.parsers") then
+      -- install with ':TSInstallSync markdown'
+      require"nvim-treesitter.parsers".get_parser_configs().markdown = {
+        install_info = {
+          url = "https://github.com/ikatyang/tree-sitter-markdown",
+          files = {"src/parser.c", "src/scanner.cc"}
+        }
+      }
+    end
+
     -- Packer can manage itself as an optional plugin
     use {"wbthomason/packer.nvim", opt = true}
 
-    -- use {'folke/tokyonight.nvim', config = function()
-    --   vim.g.tokyonight_italic_functions = false
-    --   vim.g.tokyonight_style = "day"
-    --   vim.g.tokyonight_transparent = true
-    --   vim.cmd 'colorscheme tokyonight'
-    -- end}
+    use {
+      'folke/tokyonight.nvim',
+      config = function()
+        vim.g.tokyonight_italic_functions = false
+        vim.g.tokyonight_style = "day"
+        vim.g.tokyonight_transparent = true
+        vim.cmd 'colorscheme tokyonight'
+      end
+    }
 
-    -- use {'Th3Whit3Wolf/space-nvim', config = function()
-    --   vim.o.background = "light"
-    --   vim.cmd 'colorscheme space-nvim'
-    --   vim.cmd 'hi CursorLine cterm=NONE ctermbg=lightblue guibg=lightblue'
-    -- end}
+    use {
+      'Th3Whit3Wolf/space-nvim',
+      config = function()
+        vim.o.background = "light"
+        -- vim.cmd 'colorscheme space-nvim'
+        vim.cmd 'hi CursorLine cterm=NONE ctermbg=lightblue guibg=lightblue'
+      end
+    }
 
     use {
       "mcchrish/zenbones.nvim",
-      config = function() vim.cmd 'colorscheme zenbones' end
+      config = function()
+        -- vim.cmd 'colorscheme zenbones'
+      end
     }
 
     use {
@@ -59,17 +103,17 @@ require('packer').startup({
       end
     }
 
-    use {
-      'plasticboy/vim-markdown',
-      config = function()
-        vim.g.vim_markdown_no_default_key_mappings = 1
-        vim.g.vim_markdown_new_list_item_indent = 0
-        vim.g.vim_markdown_no_extensions_in_markdown = 1
-        vim.g.vim_markdown_folding_style_pythonic = 1
-        vim.g.vim_markdown_override_foldtext = 0
-        vim.g.vim_markdown_folding_level = 1
-      end
-    }
+    -- use {
+    --   'plasticboy/vim-markdown',
+    --   config = function()
+    --     vim.g.vim_markdown_no_default_key_mappings = 1
+    --     vim.g.vim_markdown_new_list_item_indent = 0
+    --     vim.g.vim_markdown_no_extensions_in_markdown = 1
+    --     vim.g.vim_markdown_folding_style_pythonic = 1
+    --     vim.g.vim_markdown_override_foldtext = 0
+    --     vim.g.vim_markdown_folding_level = 1
+    --   end
+    -- }
 
     --     use {
     --       'mhartington/formatter.nvim',
