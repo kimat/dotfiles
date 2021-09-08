@@ -95,6 +95,7 @@ require('packer').startup({
         }
 
         vim.g.ale_fixers = {
+          ['nix'] = {'nixfmt'},
           ['lua'] = {'lua-format'},
           ['javascript'] = {'prettier'},
           ['markdown'] = {'prettier'},
