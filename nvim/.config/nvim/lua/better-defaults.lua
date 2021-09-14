@@ -10,6 +10,9 @@ vim.opt.cursorline = true
 vim.opt.encoding = "utf-8"
 vim.opt.fileencodings = "utf-8"
 
+-- set syntax automatically
+vim.opt.syntax = "on"
+
 -- searching should be case insensitive it contains a capital in it
 vim.opt.ignorecase = true -- Ignore case
 vim.opt.smartcase = true

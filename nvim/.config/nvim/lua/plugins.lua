@@ -8,6 +8,7 @@ if not packer_exists then
 end
 
 -- vim.cmd([[autocmd BufWritePost plugins.lua source <afile> | PackerCompile]])
+-- vim.cmd([[autocmd BufNewFile,BufRead *.yaml setlocal syntax=yaml]])
 vim.cmd('autocmd BufWritePost plugins.lua PackerCompile')
 
 vim.cmd [[packadd packer.nvim]]
@@ -27,11 +28,7 @@ require('packer').startup({
           rainbow = {enable = true},
           indent = {enable = true, disable = {}},
           folding = {enable = true},
-          highlight = {
-            ensure_installed = "maintained",
-            enable = true,
-            additional_vim_regex_highlighting = false
-          },
+          highlight = {enable = true, additional_vim_regex_highlighting = false},
           ensure_installed = {
             "dockerfile", "html", "bash", "javascript", "json", "lua", "nix",
             "ruby", "vim", "yaml", "markdown"
