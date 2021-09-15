@@ -1,5 +1,8 @@
 -- vim.opt == set ...
 -- vim.g == let ...
+-- unfold all
+vim.opt.foldlevel = 99
+
 -- so I know on which line the cursor is
 vim.opt.cursorline = true
 
