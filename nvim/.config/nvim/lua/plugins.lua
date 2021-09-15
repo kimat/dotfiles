@@ -55,27 +55,25 @@ require('packer').startup({
     use {
       'folke/tokyonight.nvim',
       config = function()
-        vim.g.tokyonight_italic_functions = false
-        vim.g.tokyonight_style = "day"
-        vim.g.tokyonight_transparent = true
-        vim.cmd 'colorscheme tokyonight'
+        -- vim.g.tokyonight_italic_functions = false
+        -- vim.g.tokyonight_style = "day"
+        -- vim.g.tokyonight_transparent = true
+        -- vim.cmd 'colorscheme tokyonight'
+        -- vim.cmd 'hi CursorLine cterm=NONE ctermbg=lightblue guibg=lightblue'
       end
     }
 
     use {
       'Th3Whit3Wolf/space-nvim',
       config = function()
-        vim.o.background = "light"
+        -- vim.o.background = "light"
         -- vim.cmd 'colorscheme space-nvim'
-        vim.cmd 'hi CursorLine cterm=NONE ctermbg=lightblue guibg=lightblue'
       end
     }
 
     use {
       "mcchrish/zenbones.nvim",
-      config = function()
-        -- vim.cmd 'colorscheme zenbones'
-      end
+      config = function() vim.cmd 'colorscheme zenbones' end
     }
 
     use {
