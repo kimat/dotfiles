@@ -185,7 +185,7 @@ require('packer').startup({
         map('n', 'mt',
             "<Cmd>lua require('fzf-lua').files({ cwd = '~/my/tips' })<CR>")
         map('n', 'mc',
-            "<Cmd>lua require('fzf-lua').files({ cwd = '~/my/dotfiles' })<CR>")
+            "<Cmd>lua require('fzf-lua').files({ cmd = 'cat ~/my/zsh/.config/marks/configs' })<CR>")
         map('n', 'mm', "<Cmd>lua require('fzf-lua').files({ cwd = '~/my' })<CR>")
 
         require('fzf-lua').setup {
