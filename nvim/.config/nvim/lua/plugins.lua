@@ -24,7 +24,7 @@ require('packer').startup({
         vim.wo.foldmethod = 'expr'
         vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
         require'nvim-treesitter.configs'.setup {
-          textobjects = {enable = true},
+          -- textobjects = {enable = true},
           rainbow = {enable = true},
           indent = {enable = true, disable = {}},
           folding = {enable = true},
@@ -32,6 +32,44 @@ require('packer').startup({
           ensure_installed = {
             "dockerfile", "html", "bash", "javascript", "json", "lua", "nix",
             "ruby", "vim", "yaml", "markdown"
+          }
+        }
+      end
+    }
+
+    use {
+      'nvim-treesitter/nvim-treesitter-textobjects',
+      config = function()
+        require'nvim-treesitter.configs'.setup {
+          textobjects = {
+            move = {
+              enable = true,
+              set_jumps = true, -- whether to set jumps in the jumplist
+              goto_next_start = {
+                [",,"] = "@function.outer",
+                [",a"] = "@parameter.inner"
+                -- [",m"] = "@class.outer"
+              },
+              goto_previous_start = {[",z"] = "@parameter.inner"}
+            },
+            swap = {
+              enable = true,
+              swap_next = {[",l"] = "@parameter.inner"},
+              swap_previous = {[",h"] = "@parameter.inner"}
+            },
+            select = {
+              enable = true,
+              lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+              keymaps = {
+                -- You can use the capture groups defined in textobjects.scm
+                ["ar"] = "@block.outer",
+                ["ir"] = "@block.inner",
+                ["af"] = "@function.outer",
+                ["if"] = "@function.inner",
+                ["ac"] = "@class.outer",
+                ["ic"] = "@class.inner"
+              }
+            }
           }
         }
       end
