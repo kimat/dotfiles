@@ -1,6 +1,9 @@
 -- saving is something that I do (too?) often
 map('n', '<esc>', ':w<cr>')
 
+-- kill window faster
+map('n', '<C-c>', ':q<cr>')
+
 -- leaders
 vim.g.mapleader = ','
 -- vim.g.maplocalleader = 'e'
