@@ -135,6 +135,7 @@ require('packer').startup({
           ['nix'] = {'nixfmt'},
           ['lua'] = {'lua-format'},
           ['javascript'] = {'prettier'},
+          ['javascriptreact'] = {'prettier'},
           ['markdown'] = {'prettier'},
           ['ruby'] = {'rubocop'}
         }
