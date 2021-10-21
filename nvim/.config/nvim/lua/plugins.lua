@@ -230,7 +230,7 @@ require('packer').startup({
         require('fzf-lua').setup {
           default_previewer = "cat",
           files = {fzf_ansi = '', file_icons = false, git_icons = false},
-          preview_layout = "vertical",
+          preview_layout = "vertical"
           -- TODO bat theme not working because bright?
           -- bat = {
           --   cmd    = "bat",
@@ -238,13 +238,13 @@ require('packer').startup({
           --   theme  = 'ansi', -- bat preview theme (bat --list-themes)
           --   config = nil,            -- nil uses $BAT_CONFIG_PATH
           -- },
-          fzf_binds = { -- fzf '--bind=' options
-            'f2:toggle-preview', 'f3:toggle-preview-wrap',
-            'shift-down:preview-page-down', 'shift-up:preview-page-up',
-            'ctrl-a:beginning-of-line', 'ctrl-d:abort',
-            'ctrl-u:unix-line-discard', 'ctrl-f:page-down', 'ctrl-b:page-up',
-            'ctrl-a:toggle-all', 'ctrl-l:clear-screen'
-          }
+          -- fzf_binds = { -- fzf '--bind=' options
+          --   'f2:toggle-preview', 'f3:toggle-preview-wrap',
+          --   'shift-down:preview-page-down', 'shift-up:preview-page-up',
+          --   'ctrl-a:beginning-of-line', 'ctrl-d:abort',
+          --   'ctrl-u:unix-line-discard', 'ctrl-f:page-down', 'ctrl-b:page-up',
+          --   'ctrl-a:toggle-all', 'ctrl-l:clear-screen'
+          -- }
         }
       end
     }
