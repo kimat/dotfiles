@@ -43,6 +43,7 @@ format = "{utilization} CPU"
 [[block]]
 block = "sound"
 format = "{volume} VOL"
+driver = "auto"
 
 [[block]]
 block = "time"
