@@ -78,4 +78,7 @@ map('n', 'ey', '<Cmd>silent !firefox-copy-current-page-as-markdown<CR>')
 map('n', 'eY',
     '<Cmd>silent !firefox-copy-current-page-as-markdown && firefox-send ctrl+w<CR>')
 
+-- :help changelist
+map('n', 'g.', 'g;')
+
 -- https://www.lua.org/pil/3.4.html
