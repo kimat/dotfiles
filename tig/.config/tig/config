@@ -6,6 +6,11 @@ set wrap-lines = no
 set refresh-mode = periodic
 set refresh-interval = 3 # in seconds
 
+set main-view = line-number:no,interval=5 id:no date:default author:abbreviated commit-title:yes,graph,refs,overflow=no
+set main-view-date = custom
+set main-view-date-format = "%H:%M %d/%m" #%Y
+# }}}
+
 # Colors {{{
 color cursor blue color252 bold
 color author yellow default
