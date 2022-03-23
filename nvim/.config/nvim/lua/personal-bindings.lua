@@ -74,6 +74,8 @@ vim.opt.path = "$PWD/**"
 
 map('n', 'es', '<Cmd>e ~/my/tips/stack.md<CR>')
 
+map('n', 'eg', '<Cmd>silent !firefox-send Home<CR>')
+map('n', 'ed', '<Cmd>silent !firefox-send ctrl+w<CR>')
 map('n', 'ey', '<Cmd>silent !firefox-copy-current-page-as-markdown<CR>')
 map('n', 'eY',
     '<Cmd>silent !firefox-copy-current-page-as-markdown && firefox-send ctrl+w<CR>')
