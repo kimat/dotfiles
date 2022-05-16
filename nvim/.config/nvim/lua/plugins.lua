@@ -29,9 +29,11 @@ require('packer').startup({
           indent = {enable = true, disable = {}},
           folding = {enable = true},
           highlight = {enable = true, additional_vim_regex_highlighting = false},
+          -- https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
           ensure_installed = {
             "dockerfile", "html", "bash", "javascript", "json", "lua", "nix",
-            "ruby", "vim", "yaml", "markdown"
+            "ruby", "vim", "yaml"
+            -- , "markdown"
           }
         }
       end
