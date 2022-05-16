@@ -224,6 +224,8 @@ for_window [class="termite"] border none
 for_window [class="mpv"] floating enable
 for_window [instance="floating"] floating enable
 for_window [class="floating"] floating enable
+for_window [title="Playwright Inspector"] floating enable
+for_window [class="peek"] floating disable
 # }}}
 
 # default layout{{{
