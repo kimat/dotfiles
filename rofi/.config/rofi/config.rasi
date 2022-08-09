@@ -2,13 +2,7 @@ configuration {
   location: 0;
   xoffset: 0;
   yoffset: 0;
-  theme: "android_notification";
   matching: "fuzzy";
   modi: "drun";
 }
-
-
-/*
-  theme: "Arc-Dark";
-rofi.theme: /nix/store/09g2809j43jn6s7xf10wx9yqgkc0xp08-rofi-1.6.1/share/rofi/themes/android_notification.rasi
-*/
+@theme "android_notification"
