@@ -32,7 +32,9 @@ map('n', '<leader>C', ':let @+=expand("%:.")<CR>')
 map('n', ',b', 'obinding.pry<ESC>^')
 
 -- gx should open any link under the cursor
--- map('n', 'gx', ':silent !firefox --new-tab <C-R>=escape("<C-R><C-F>", "#?&;\|%")<CR><CR>')
+map("n", "gx",
+    [[:silent execute '!$BROWSER ' . shellescape(expand('<cfile>'), 1)<CR>]],
+    opts)
 
 -- debug
 -- :lua put(an_array)
