@@ -52,7 +52,7 @@ require("packer").startup {
             "ruby",
             "vim",
             "yaml",
-            -- , "markdown"
+            "markdown",
           },
         }
       end,
@@ -95,15 +95,6 @@ require("packer").startup {
         }
       end,
     }
-    if pcall(require, "nvim-treesitter.parsers") then
-      -- install with ':TSInstallSync markdown'
-      require("nvim-treesitter.parsers").get_parser_configs().markdown = {
-        install_info = {
-          url = "https://github.com/ikatyang/tree-sitter-markdown",
-          files = { "src/parser.c", "src/scanner.cc" },
-        },
-      }
-    end
 
     use {
       "hrsh7th/nvim-cmp",
