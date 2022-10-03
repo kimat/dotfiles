@@ -286,44 +286,6 @@ require("packer").startup {
     --   end
     -- }
 
-    --     use {
-    --       'mhartington/formatter.nvim',
-    --       config = function()
-    --         require('formatter').setup({
-    --           filetype = {
-    --             ruby = {
-    --               function()
-    --                 return {
-    --                   exe = "rubocop", -- might prepend `bundle exec `
-    --                   args = {
-    --                     '--auto-correct', '--stdin', '%:p', '2>/dev/null', '|',
-    --                     "awk 'f; /^====================$/{f=1}'"
-    --                   },
-    --                   stdin = true
-    --                 }
-    --               end
-    --             },
-    --             lua = {
-    --               function()
-    --                 return {
-    --                   exe = "lua-format", -- might prepend `bundle exec `
-    --                   args = {'-i', '--no-use-tab', '--indent-width=2'},
-    --                   stdin = true
-    --                 }
-    --               end
-    --             }
-
-    --           }
-    --         })
-    --         vim.cmd([[
-    -- augroup FormatAutogroup
-    --   autocmd!
-    --   autocmd BufWritePost *.rb,*.lua FormatWrite
-    -- augroup END
-    -- ]], true)
-    --       end
-    --     }
-
     use {
       "numToStr/Comment.nvim",
       config = function()
@@ -334,15 +296,6 @@ require("packer").startup {
         }
       end,
     }
-
-    -- use {
-    --   "b3nj5m1n/kommentary",
-    --   config = function()
-    --     require("kommentary.config").configure_language("default", {
-    --       prefer_single_line_comments = true,
-    --     })
-    --   end,
-    -- }
 
     use {
       "windwp/nvim-autopairs",
