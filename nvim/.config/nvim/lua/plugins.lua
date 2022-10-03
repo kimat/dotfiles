@@ -241,6 +241,7 @@ require("packer").startup {
                 return { exe = "terraform", args = { "fmt", "-" }, stdin = true }
               end,
             },
+            markdown = require("formatter.filetypes.markdown").prettier,
           },
         }
       end,
