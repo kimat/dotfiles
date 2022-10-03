@@ -455,16 +455,14 @@ require("packer").startup {
   end,
 }
 
-vim.cmd [[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua FormatWrite | source <afile> | PackerCompile
-  augroup end
-  augroup FormatAutogroup
-    autocmd!
-    autocmd BufWritePost * FormatWrite
-  augroup END
-]]
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  pattern = { "*.lua" },
+  command = "source <afile> | PackerCompile",
+})
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  pattern = { "*" },
+  command = "FormatWrite",
+})
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   callback = function()
     require("lint").try_lint()
