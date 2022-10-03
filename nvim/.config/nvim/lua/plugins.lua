@@ -242,6 +242,11 @@ require("packer").startup {
               end,
             },
             markdown = require("formatter.filetypes.markdown").prettier,
+            nix = {
+              function()
+                return { exe = "nixfmt", stdin = true }
+              end,
+            },
           },
         }
       end,
