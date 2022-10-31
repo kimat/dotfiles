@@ -1,6 +1,6 @@
 -- saving is something that I do (too?) often
--- map('n', '<esc>', '<Cmd>update!<cr>')
-map("n", "<esc>", "<Cmd>FormatWrite<cr>")
+map("n", "<esc>", "<Cmd>update!<cr>")
+-- map("n", "<esc>", "<Cmd>FormatWrite<cr>")
 
 -- kill window faster
 map("n", "<C-c>", ":q<cr>")

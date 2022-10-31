@@ -10,6 +10,7 @@ vim.cmd [[packadd packer.nvim]]
 require("packer").startup {
   function()
     use {
+      -- https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
       "nvim-treesitter/nvim-treesitter",
       requires = {
         "JoosepAlviste/nvim-ts-context-commentstring",
@@ -156,6 +157,7 @@ require("packer").startup {
         require("lspconfig").bashls.setup { capabilities = capabilities } -- https://github.com/bash-lsp/bash-language-server
         require("lspconfig").solargraph.setup { capabilities = capabilities } --
         require("lspconfig").terraformls.setup { capabilities = capabilities } -- https://github.com/hashicorp/terraform-ls
+        require("lspconfig").marksman.setup { capabilities = capabilities }
       end,
     }
 
@@ -191,10 +193,16 @@ require("packer").startup {
       end,
     }
 
-    use { "mfussenegger/nvim-lint" }
+    use {
+      "mfussenegger/nvim-lint",
+      config = function()
+        -- https://github.com/mfussenegger/nvim-lint#available-linters
+        require("lint").linters_by_ft = {}
+      end,
+    }
 
     use {
-      "mhartington/formatter.nvim",
+      "mhartington/formatter.nvim", -- https://github.com/mhartington/formatter.nvim
       config = function()
         local util = require "formatter.util"
         require("formatter").setup {
@@ -236,11 +244,12 @@ require("packer").startup {
                 }
               end,
             },
-            terraform = {
+            tf = {
               function()
                 return { exe = "terraform", args = { "fmt", "-" }, stdin = true }
               end,
             },
+            json = require("formatter.filetypes.json").jq,
             markdown = require("formatter.filetypes.markdown").prettier,
             nix = {
               function()
