@@ -97,69 +97,88 @@ require("packer").startup {
       end,
     }
 
+    use { "L3MON4D3/LuaSnip" }
     use {
       "hrsh7th/nvim-cmp",
-      requires = {
-        { "hrsh7th/cmp-nvim-lsp" },
-        { "L3MON4D3/LuaSnip" },
-      },
       config = function()
-        local has_words_before = function()
-          local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-          return col ~= 0
-            and vim.api
-                .nvim_buf_get_lines(0, line - 1, line, true)[1]
-                :sub(col, col)
-                :match "%s"
-              == nil
-        end
-        local luasnip = require "luasnip"
-        local cmp = require "cmp"
-        cmp.setup {
+        require("cmp").setup {
           snippet = {
             expand = function(args)
               require("luasnip").lsp_expand(args.body)
             end,
           },
-          mapping = {
-            ["<Tab>"] = cmp.mapping(function(fallback)
-              if cmp.visible() then
-                cmp.select_next_item()
-              elseif luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump()
-              elseif has_words_before() then
-                cmp.complete()
-              else
-                fallback()
-              end
-            end, { "i", "s" }),
 
-            ["<S-Tab>"] = cmp.mapping(function(fallback)
-              if cmp.visible() then
-                cmp.select_prev_item()
-              elseif luasnip.jumpable(-1) then
-                luasnip.jump(-1)
-              else
-                fallback()
-              end
-            end, { "i", "s" }),
+          sources = {
+            { name = "nvim_lsp" },
+            { name = "luasnip" },
           },
         }
       end,
     }
-    use {
-      "neovim/nvim-lspconfig",
-      config = function()
-        vim.opt.completeopt = "menuone,noselect"
-        local capabilities = require("cmp_nvim_lsp").update_capabilities(
-          vim.lsp.protocol.make_client_capabilities()
-        )
-        require("lspconfig").bashls.setup { capabilities = capabilities } -- https://github.com/bash-lsp/bash-language-server
-        require("lspconfig").solargraph.setup { capabilities = capabilities } --
-        require("lspconfig").terraformls.setup { capabilities = capabilities } -- https://github.com/hashicorp/terraform-ls
-        require("lspconfig").marksman.setup { capabilities = capabilities }
-      end,
-    }
+    -- use { "hrsh7th/cmp-nvim-lsp" }
+    use { "saadparwaiz1/cmp_luasnip" }
+    -- use {
+    --   "hrsh7th/nvim-cmp",
+    --   requires = {
+    --     { "hrsh7th/cmp-nvim-lsp" },
+    --     { "L3MON4D3/LuaSnip" },
+    --   },
+    --   config = function()
+    --     local has_words_before = function()
+    --       local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    --       return col ~= 0
+    --         and vim.api
+    --             .nvim_buf_get_lines(0, line - 1, line, true)[1]
+    --             :sub(col, col)
+    --             :match "%s"
+    --           == nil
+    --     end
+    --     local luasnip = require "luasnip"
+    --     local cmp = require "cmp"
+    --     cmp.setup {
+    --       snippet = {
+    --         expand = function(args)
+    --           require("luasnip").lsp_expand(args.body)
+    --         end,
+    --       },
+    --       mapping = {
+    --         ["<Tab>"] = cmp.mapping(function(fallback)
+    --           if cmp.visible() then
+    --             cmp.select_next_item()
+    --           elseif luasnip.expand_or_jumpable() then
+    --             luasnip.expand_or_jump()
+    --           elseif has_words_before() then
+    --             cmp.complete()
+    --           else
+    --             fallback()
+    --           end
+    --         end, { "i", "s" }),
+    --
+    --         ["<S-Tab>"] = cmp.mapping(function(fallback)
+    --           if cmp.visible() then
+    --             cmp.select_prev_item()
+    --           elseif luasnip.jumpable(-1) then
+    --             luasnip.jump(-1)
+    --           else
+    --             fallback()
+    --           end
+    --         end, { "i", "s" }),
+    --       },
+    --     }
+    --   end,
+    -- }
+    use { "neovim/nvim-lspconfig" }
+    --   config = function()
+    --     vim.opt.completeopt = "menuone,noselect"
+    --     local capabilities = require("cmp_nvim_lsp").update_capabilities(
+    --       vim.lsp.protocol.make_client_capabilities()
+    --     )
+    --     require("lspconfig").bashls.setup { capabilities = capabilities } -- https://github.com/bash-lsp/bash-language-server
+    --     require("lspconfig").solargraph.setup { capabilities = capabilities } --
+    --     require("lspconfig").terraformls.setup { capabilities = capabilities } -- https://github.com/hashicorp/terraform-ls
+    --     require("lspconfig").marksman.setup { capabilities = capabilities }
+    --   end,
+    -- }
 
     -- Packer can manage itself as an optional plugin
     use { "wbthomason/packer.nvim", opt = true }
@@ -213,7 +232,6 @@ require("packer").startup {
                 return {
                   exe = "rubocop",
                   args = {
-                    "--fix-layout",
                     "--stdin",
                     util.escape_path(util.get_current_buffer_file_name()),
                     "--format",
