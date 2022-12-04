@@ -274,6 +274,18 @@ require("packer").startup {
                 return { exe = "nixfmt", stdin = true }
               end,
             },
+            javascript = {
+              function()
+                return {
+                  exe = "prettier",
+                  args = {
+                    "--stdin-filepath",
+                    util.escape_path(util.get_current_buffer_file_path()),
+                  },
+                  stdin = true,
+                }
+              end,
+            },
           },
         }
       end,
