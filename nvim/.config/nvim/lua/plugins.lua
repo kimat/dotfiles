@@ -262,7 +262,7 @@ require("packer").startup {
                 }
               end,
             },
-            tf = {
+            terraform = {
               function()
                 return { exe = "terraform", args = { "fmt", "-" }, stdin = true }
               end,
