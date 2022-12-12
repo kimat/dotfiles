@@ -1,0 +1,3 @@
+# color of the help messages
+# leave empty for autodetection
+help_color="#4872FF"
