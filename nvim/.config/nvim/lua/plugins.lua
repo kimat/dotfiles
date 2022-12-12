@@ -267,7 +267,11 @@ require("packer").startup {
                 return { exe = "terraform", args = { "fmt", "-" }, stdin = true }
               end,
             },
-            json = require("formatter.filetypes.json").jq,
+            json = {
+              function()
+                return { exe = "underscore", stdin = true, args = { "print" } }
+              end,
+            },
             markdown = require("formatter.filetypes.markdown").prettier,
             nix = {
               function()
