@@ -273,6 +273,7 @@ require("packer").startup {
               end,
             },
             markdown = require("formatter.filetypes.markdown").prettier,
+            python = require("formatter.filetypes.python").autopep8,
             nix = {
               function()
                 return { exe = "nixfmt", stdin = true }
