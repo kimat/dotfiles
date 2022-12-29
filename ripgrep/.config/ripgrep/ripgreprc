@@ -1,1 +1,3 @@
 --hidden
+--glob=!.git/objects
+--glob=!.git/lfs
