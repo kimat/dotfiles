@@ -51,6 +51,7 @@ require("packer").startup {
             "nix",
             "python",
             "ruby",
+            "terraform",
             "vim",
             "yaml",
             "markdown",
@@ -223,7 +224,9 @@ require("packer").startup {
       "mfussenegger/nvim-lint",
       config = function()
         -- https://github.com/mfussenegger/nvim-lint#available-linters
-        require("lint").linters_by_ft = {}
+        require("lint").linters_by_ft = {
+          javascript = { "eslint" },
+        }
       end,
     }
 
@@ -234,41 +237,35 @@ require("packer").startup {
         require("formatter").setup {
           logging = true,
           filetype = {
-            ruby = {
-              function()
-                return {
-                  exe = "rubocop",
-                  args = {
-                    "--stdin",
-                    util.escape_path(util.get_current_buffer_file_name()),
-                    "--format",
-                    "files",
-                  },
-                  stdin = true,
-                  transform = function(text)
-                    table.remove(text, 1)
-                    table.remove(text, 1)
-                    return text
-                  end,
-                }
-              end,
-            },
-            lua = {
-              function()
-                return {
-                  exe = "stylua",
-                  args = {
-                    "--search-parent-directories",
-                    "--stdin-filepath",
-                    util.escape_path(util.get_current_buffer_file_path()),
-                    "--",
-                    "-",
-                  },
-                  stdin = true,
-                  -- cf. stylua.toml for extra config
-                }
-              end,
-            },
+            -- ruby = {
+            --   function()
+            --     return {
+            --       exe = "rubocop",
+            --       args = {
+            --         "--stdin",
+            --         util.escape_path(util.get_current_buffer_file_name()),
+            --         "--format",
+            --         "files",
+            --       },
+            --       stdin = true,
+            --       transform = function(text)
+            --         table.remove(text, 1)
+            --         table.remove(text, 1)
+            --         return text
+            --       end,
+            --     }
+            --   end,
+            -- },
+            -- ruby = {
+            --   function()
+            --     return {
+            --       exe = "standardrb",
+            --       args = { "--fix" },
+            --     }
+            --   end,
+            -- },
+            ruby = require("formatter.filetypes.ruby").standardrb,
+            lua = require("formatter.filetypes.lua").stylua,
             terraform = {
               function()
                 return { exe = "terraform", args = { "fmt", "-" }, stdin = true }
@@ -281,16 +278,13 @@ require("packer").startup {
             },
             markdown = require("formatter.filetypes.markdown").prettier,
             python = require("formatter.filetypes.python").autopep8,
-            nix = {
-              function()
-                return { exe = "nixfmt", stdin = true }
-              end,
-            },
+            nix = require("formatter.filetypes.nix").nixfmt,
             javascript = {
               function()
                 return {
                   exe = "prettier",
                   args = {
+                    "--with-node-modules",
                     "--stdin-filepath",
                     util.escape_path(util.get_current_buffer_file_path()),
                   },
