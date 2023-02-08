@@ -85,10 +85,15 @@ vim.opt.grepprg = "rg --no-heading --vimgrep --hidden -g '!.git'"
 vim.opt.grepformat = "%f:%l:%c:%m"
 vim.opt.path = "$PWD/**"
 
-map("n", "es", "<Cmd>e ~/my/tips/stack.md<CR>")
+-- map("n", "es", "<Cmd>e ~/my/tips/stack.md<CR>")
 
+map("n", "el", "<Cmd>e ~/my/tips/favorite/links<CR>")
 map("n", "eg", "<Cmd>silent !firefox-send Home<CR>")
 map("n", "ed", "<Cmd>silent !firefox-send ctrl+w<CR>")
+map("n", "eD", "<Cmd>silent !firefox-send ctrl+shift+t<CR>")
+map("n", "es", "<Cmd>silent !firefox-send ctrl+Page_Up<CR>")
+map("n", "ef", "<Cmd>silent !firefox-send ctrl+Page_Down<CR>")
+map("n", "er", "<Cmd>silent !firefox-send ctrl+r<CR>")
 map("n", "ey", "<Cmd>silent !firefox-copy-current-page-as-markdown<CR>")
 map(
   "n",
