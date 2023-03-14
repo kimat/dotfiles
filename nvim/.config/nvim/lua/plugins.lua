@@ -10,10 +10,16 @@ vim.cmd [[packadd packer.nvim]]
 require("packer").startup {
   function()
     use {
+      "numToStr/Comment.nvim",
+      config = function()
+        require("Comment").setup()
+      end,
+    }
+    use {
       -- https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
       "nvim-treesitter/nvim-treesitter",
       requires = {
-        "JoosepAlviste/nvim-ts-context-commentstring",
+        -- "JoosepAlviste/nvim-ts-context-commentstring",
         "RRethy/nvim-treesitter-endwise",
         "windwp/nvim-ts-autotag",
       },
@@ -25,7 +31,7 @@ require("packer").startup {
         vim.wo.foldmethod = "expr"
         vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
         require("nvim-treesitter.configs").setup {
-          context_commentstring = { enable = true, enable_autocmd = false }, -- https://github.com/JoosepAlviste/nvim-ts-context-commentstring
+          -- context_commentstring = { enable = true, enable_autocmd = false }, -- https://github.com/JoosepAlviste/nvim-ts-context-commentstring
           endwise = { enable = true }, -- https://github.com/RRethy/nvim-treesitter-endwise
           autotag = { -- https://github.com/windwp/nvim-ts-autotag
             enable = true,
