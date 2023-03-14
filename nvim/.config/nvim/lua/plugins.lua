@@ -191,16 +191,16 @@ require("packer").startup {
     -- Packer can manage itself as an optional plugin
     use { "wbthomason/packer.nvim", opt = true }
 
-    use {
-      "folke/tokyonight.nvim",
-      config = function()
-        -- vim.g.tokyonight_italic_functions = false
-        -- vim.g.tokyonight_style = "day"
-        -- vim.g.tokyonight_transparent = true
-        -- vim.cmd 'colorscheme tokyonight'
-        -- vim.cmd 'hi CursorLine cterm=NONE ctermbg=lightblue guibg=lightblue'
-      end,
-    }
+    -- use {
+    --   "folke/tokyonight.nvim",
+    --   config = function()
+    --     -- vim.g.tokyonight_italic_functions = false
+    --     -- vim.g.tokyonight_style = "day"
+    --     -- vim.g.tokyonight_transparent = true
+    --     -- vim.cmd 'colorscheme tokyonight'
+    --     -- vim.cmd 'hi CursorLine cterm=NONE ctermbg=lightblue guibg=lightblue'
+    --   end,
+    -- }
 
     use {
       "Th3Whit3Wolf/space-nvim",
