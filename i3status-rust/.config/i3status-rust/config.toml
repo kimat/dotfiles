@@ -1,55 +1,59 @@
+icons_format = "{icon}"
+
 [theme]
-name = "native"
+theme = "native"
+
+# [theme]
+# name = "native"
 [theme.overrides]
-separator = ""
-
-icons_format = ""
-
+separator = "    "
 [icons]
-name="awesome"
+icons = "awesome4"
 [icons.overrides]
-bat_charging = ""
-time = ""
-cpu =""
-sound =""
+volume_muted = "\uf026"
+# bat_charging = ""
+# time = ""
+# cpu =""
+# sound =""
 
 [[block]]
 if_command = "test -d /sys/class/power_supply/BAT0"
 block = "battery"
 interval = 10
-format = " {time} battery remaining"
+format = " $time battery remaining"
 
 [[block]]
 block = "disk_space"
 path = "/"
-alias = "/"
 info_type = "available"
-unit = "GB"
 interval = 20
 warning = 20.0
 alert = 10.0
-format = "{available} free"
+format = "$available"
 
 [[block]]
 block = "custom"
-command = 'light | sed "s/\..*/% bright/g"'
+command = 'light | sed -r "s,(.*)\..*,\1% light,g"'
 interval = 10
 
 
 [[block]]
 block = "cpu"
 interval = 1
-format = "{utilization} CPU"
+format = "{$utilization} cpu"
 
 [[block]]
 block = "sound"
-format = "{volume} VOL"
+format = "{$volume| 0%} $icon"
 driver = "auto"
+# [[block.click]]
+# button = "left"
+# cmd = "pactl \"$(pactl info | grep 'Default Sink:' | sed 's/.*: //')\"  set-sink-volume 0%"
 
 [[block]]
 block = "time"
 interval = 5
-format = "%a %d/%m %R"
+format = "$timestamp.datetime(f:'%a %d/%m %R')"
 
 # [[block]]
 # block = "custom"
