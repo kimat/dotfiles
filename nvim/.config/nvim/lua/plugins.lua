@@ -324,6 +324,7 @@ plugins = {
   -- viml based plugins
   {
     "previm/previm",
+    ft = "markdown",
     config = function()
       vim.g.previm_open_cmd = "firefox"
       -- vim.g.previm_plantuml_imageprefix = "http://localhost:8080/plantuml/img"
