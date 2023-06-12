@@ -43,6 +43,12 @@ interval = 1
 format = "{$utilization} cpu"
 
 [[block]]
+if_command = "lspci | grep -q AMD"
+block = "amd_gpu"
+interval = 1
+format = "$utilization gpu"
+
+[[block]]
 block = "sound"
 format = "{$volume| 0%} $icon"
 driver = "auto"
