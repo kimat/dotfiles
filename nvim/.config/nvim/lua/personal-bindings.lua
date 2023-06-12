@@ -97,7 +97,7 @@ map("n", "er", "<Cmd>silent !firefox-send ctrl+r<CR>")
 map("n", "ey", "<Cmd>silent !firefox-copy-current-page-as-markdown<CR>")
 map(
   "n",
-  "eY",
+  "eu",
   "<Cmd>silent !firefox-copy-current-page-as-markdown && firefox-send ctrl+w<CR>"
 )
 
