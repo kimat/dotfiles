@@ -361,6 +361,8 @@ plugins = {
   -- reformat text
   { "AndrewRadev/splitjoin.vim" },
   { "godlygeek/tabular" },
+
+  { "cuducos/yaml.nvim" },
 }
 opts = {
   dev = {
