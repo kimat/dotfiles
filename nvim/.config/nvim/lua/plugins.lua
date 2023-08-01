@@ -280,8 +280,9 @@ plugins = {
   -- },
   {
     "ibhagwan/fzf-lua",
+    commit = "267098387dd7a3c53f8a4cfb17285ba05d841353",
     lazy = false,
-    dependencies = { "vijaymarupudi/nvim-fzf" },
+    dependencies = { "vijaymarupudi/nvim-fzf", "nvim-tree/nvim-web-devicons" },
     -- 'kyazdani42/nvim-web-devicons' } -- optional for icons
     -- use {'vijaymarupudi/nvim-fzf-commands'}
     config = function()
