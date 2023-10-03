@@ -56,8 +56,9 @@ format = "$utilization gpu"
 block = "sound"
 format = "{$volume| 0%} $icon"
 driver = "auto"
-# [[block.click]]
-# button = "left"
+[[block.click]]
+button = "left"
+cmd = "xdotool key XF86AudioMute"
 # cmd = "pactl \"$(pactl info | grep 'Default Sink:' | sed 's/.*: //')\"  set-sink-volume 0%"
 
 [[block]]
