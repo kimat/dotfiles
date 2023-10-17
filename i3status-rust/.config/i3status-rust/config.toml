@@ -18,7 +18,7 @@ volume_muted = "\uf026"
 
 [[block]]
 block = "net"
-format = " $icon {$signal_strength $ssid $frequency|Wired connection} via $device "
+format = " $icon {$signal_strength $ssid $frequency via $device|Wired}"
 
 [[block]]
 if_command = "test -d /sys/class/power_supply/BAT0"
