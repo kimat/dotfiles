@@ -5,6 +5,7 @@ config.default_prog =
   { "/usr/bin/env", "tmux", "new-session", "-A", "-s", "main" }
 
 config.default_cursor_style = "SteadyBar"
+config.audible_bell = "Disabled"
 
 -- lucius
 config.colors = {
