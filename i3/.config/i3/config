@@ -78,6 +78,7 @@ bindsym $mod+d exec rofi -show run -matching fuzzy
 
 # kill focused window
 bindsym $mod+Shift+a kill
+bindsym $mod+q kill
 
 # change focus
 bindsym $mod+h focus left
@@ -121,12 +122,13 @@ bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
+bindsym $mod+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+# bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+q focus parent
+# bindsym $mod+q focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
