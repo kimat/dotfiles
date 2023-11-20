@@ -29,6 +29,11 @@ plugins = {
     config = function()
       vim.cmd "colorscheme zenbones"
       vim.o.background = "light"
+      vim.api.nvim_command "hi Cursor guifg=black guibg=#65B8C1"
+      vim.api.nvim_command "hi Cursor2 guifg=#CF86C1 guibg=black"
+      -- Set guicursor
+      vim.o.guicursor =
+        "n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor2/lCursor2,r-cr:hor20,o:hor50"
     end,
   },
   -- {
