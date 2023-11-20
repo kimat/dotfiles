@@ -212,7 +212,15 @@ plugins = {
             end,
           },
           markdown = require("formatter.filetypes.markdown").prettier,
-          python = require("formatter.filetypes.python").autopep8,
+          python = {
+            function()
+              return {
+                exe = "ruff",
+                stdin = true,
+                args = { "format", "-" },
+              }
+            end,
+          },
           nix = require("formatter.filetypes.nix").nixfmt,
           javascript = {
             function()
