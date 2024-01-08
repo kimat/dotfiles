@@ -154,7 +154,7 @@ plugins = {
       }
     end,
   },
-  { "L3MON4D3/LuaSnip" },
+  -- { "L3MON4D3/LuaSnip" },
   {
     "hrsh7th/nvim-cmp",
     config = function()
