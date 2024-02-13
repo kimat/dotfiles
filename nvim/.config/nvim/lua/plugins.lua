@@ -103,6 +103,7 @@ plugins = {
           "gitignore",
           "hcl",
           "html",
+          "embedded_template",
           "javascript",
           "json",
           "lua",
