@@ -61,3 +61,16 @@ vim.cmd("set nowrap")
 -- just save more often
 vim.o.swapfile = false
 vim.bo.swapfile = false
+
+-- standardrb integration in neovim
+vim.opt.signcolumn = "yes" -- otherwise it bounces in and out, not strictly needed though
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "ruby",
+  group = vim.api.nvim_create_augroup("RubyLSP", { clear = true }), -- also this is not /needed/ but it's good practice
+  callback = function()
+    vim.lsp.start {
+      name = "standard",
+      cmd = { "standardrb", "--lsp" },
+    }
+  end,
+})
