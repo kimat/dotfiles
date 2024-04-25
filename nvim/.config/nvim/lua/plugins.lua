@@ -114,6 +114,7 @@ plugins = {
           "vim",
           "yaml",
           "markdown",
+          "embedded_template",
         },
       }
     end,
@@ -421,3 +422,5 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
     require("lint").try_lint()
   end,
 })
+-- vim.treesitter.language.register("embedded_template", "html")
+vim.cmd.autocmd "BufRead,BufNewFile *.ejs se filetype=html"
