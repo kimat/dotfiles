@@ -73,6 +73,10 @@ output * adaptive_sync on
     # Start a terminal
     bindsym $mod+Return exec wezterm
 
+    # Media keys
+    bindsym XF86MonBrightnessUp exec light -A 5
+    bindsym XF86MonBrightnessDown exec light -U 5
+
     # Kill focused window
     bindsym $mod+Shift+a kill
 
