@@ -210,12 +210,16 @@ plugins = {
               return { exe = "terraform", stdin = true, args = { "fmt", "-" } }
             end,
           },
-          json = {
+          markdown = require("formatter.filetypes.markdown").prettier,
+          python = {
             function()
-              return { exe = "underscore", stdin = true, args = { "print" } }
+              return {
+                exe = "ruff",
+                stdin = true,
+                args = { "format", "-" },
+              }
             end,
           },
-          markdown = require("formatter.filetypes.markdown").prettier,
           python = {
             function()
               return {
