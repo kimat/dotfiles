@@ -240,4 +240,5 @@ exec i3-sensible-terminal
 exec --no-startup-id $HOME/my/scripts/bin/a
 exec --no-startup-id daemonize $HOME/my/scripts/bin/last-i3-focus.py
 exec DNS_SERVER=$(cat /etc/resolv.conf | grep nameserver | head -n 1 | sed 's/.* //g') ; watch -n 0.5 -g "ping -W 0.5 -c 1 $DNS_SERVER | grep '64 bytes from'" && sleep 2 && firefox
+bindsym $mod+c exec grim -g "$(slurp -p)" -t ppm - | convert - -format "%[pixel:p{0,0}]" txt:- | tail -n 1 | cut -d " " -f 4 | wl-copy
 # }}}
