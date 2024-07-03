@@ -195,9 +195,9 @@ plugins = {
       }
     end,
   },
+  -- to disable auto formatting: `:set ei=BufWritePost`
   {
-    "kimat/formatter.nvim",
-    branch = "add-erb-formatting-support",
+    "mhartington/formatter.nvim",
     config = function()
       local util = require "formatter.util"
       require("formatter").setup {
