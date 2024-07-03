@@ -98,6 +98,8 @@ plugins = {
         },
         -- https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
         ensure_installed = {
+          "vimdoc",
+          "ruby",
           "bash",
           "dockerfile",
           "gitignore",
@@ -109,12 +111,12 @@ plugins = {
           "lua",
           "nix",
           "python",
-          "ruby",
           "terraform",
           "vim",
           "yaml",
           "markdown",
           "embedded_template",
+          "hurl",
         },
       }
     end,
