@@ -29,8 +29,10 @@ plugins = {
     config = function()
       vim.cmd "colorscheme zenbones"
       vim.o.background = "light"
-      vim.api.nvim_command "hi Cursor guifg=black guibg=#65B8C1"
-      vim.api.nvim_command "hi Cursor2 guifg=#CF86C1 guibg=black"
+      vim.api.nvim_set_hl(0, "Cursor", { bg = "#65B8C1" })
+      vim.api.nvim_set_hl(0, "Cursor2", { bg = "#65B8C1" })
+      vim.api.nvim_set_hl(0, "MarkdownHBg", { bg = "#DEDEDE" })
+      vim.api.nvim_set_hl(0, "MarkdownCodeBlock", { bg = "#fbfbfb" })
       -- Set guicursor
       vim.o.guicursor =
         "n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor2/lCursor2,r-cr:hor20,o:hor50"
@@ -340,6 +342,75 @@ plugins = {
         -- }
       }
     end,
+  },
+  -- {
+  --   "OXY2DEV/markview.nvim",
+  --   ft = { "markdown" },
+  --   -- dependencies = { "nvim-tree/nvim-web-devicons" },
+  --   config = function()
+  --     require("markview").setup()
+  --   end,
+  -- },
+  -- {
+  --   "lukas-reineke/headlines.nvim",
+  --   dependencies = "nvim-treesitter/nvim-treesitter",
+  --   config = true, -- or `opts = {}`
+  -- },
+  {
+    "MeanderingProgrammer/markdown.nvim",
+    name = "render-markdown", -- Only needed if you have another plugin named markdown.nvim
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    config = function()
+      require("render-markdown").setup {
+        highlights = {
+          heading = {
+            -- Background of heading line
+            backgrounds = {
+              "MarkdownHBg",
+              "MarkdownHBg",
+              "MarkdownHBg",
+            },
+            -- Foreground of heading character only
+            foregrounds = {
+              "markdownH1",
+              "markdownH2",
+              "markdownH3",
+              "markdownH4",
+              "markdownH5",
+              "markdownH6",
+            },
+          },
+          -- Horizontal break
+          dash = "LineNr",
+          -- Code blocks
+          code = "MarkdownCodeBlock",
+        },
+      }
+    end,
+  },
+  {
+    "shellRaining/hlchunk.nvim",
+    enabled = true,
+    -- event = "LazyFile",
+    opts = {
+      chunk = {
+        enable = true,
+        notify = true,
+        use_treesitter = true,
+        chars = {
+          horizontal_line = "─",
+          vertical_line = "│",
+          left_top = "╭",
+          left_bottom = "╰",
+          right_arrow = "─",
+          style = "black",
+        },
+      },
+    },
+  },
+  {
+    "gbprod/yanky.nvim",
+    opts = {},
   },
 
   -- viml based plugins
