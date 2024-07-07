@@ -8,46 +8,7 @@ config.default_cursor_style = "SteadyBar"
 config.audible_bell = "Disabled"
 
 -- lucius
-config.color_scheme = "lucius"
-config.color_schemes = {
-  ["dark"] = {
-    background = "#DADADA",
-    foreground = "#444444",
-  },
-  ["lucius"] = {
-    --   -- The default text color
-    foreground = "#444444",
-    background = "#ffffff",
-    --   -- The default background color
-    --   background = "silver",
-    --
-    --   -- Overrides the cell background color when the current cell is occupied by the
-    --   -- cursor and the cursor style is set to Block
-    cursor_bg = "#444444",
-    --   -- Overrides the text color when the current cell is occupied by the cursor
-    --   cursor_fg = "black",
-    ansi = {
-      "#444444",
-      "#af0000",
-      "#008700",
-      "#af5f00",
-      "#005faf",
-      "#870087",
-      "#008787",
-      "#ffffff",
-    },
-    brights = {
-      "#444444",
-      "#af0000",
-      "#008700",
-      "#af5f00",
-      "#005faf",
-      "#870087",
-      "#008787",
-      "#ffffff",
-    },
-  },
-}
+config.colors = {}
 
 -- Tab Bar {{{1
 -- config.hide_tab_bar_if_only_one_tab = true
