@@ -294,7 +294,6 @@ plugins = {
       require("nvim-autopairs").setup()
     end,
   },
-  -- {'nvim-treesitter/nvim-treesitter' -- syntax highlight using treesitter},
   -- {
   --   "norcalli/nvim-colorizer.lua",
   --   config = function()
@@ -455,6 +454,23 @@ plugins = {
   { "godlygeek/tabular" },
 
   { "cuducos/yaml.nvim" },
+
+  {
+    "pocco81/true-zen.nvim",
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
+  },
+  {
+    "folke/zen-mode.nvim",
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
+  },
 }
 opts = {
   dev = {
