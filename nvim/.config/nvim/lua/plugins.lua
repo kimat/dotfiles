@@ -320,38 +320,9 @@ plugins = {
             end,
           },
           markdown = require("formatter.filetypes.markdown").prettier,
-          python = {
-            function()
-              return {
-                exe = "ruff",
-                stdin = true,
-                args = { "format", "-" },
-              }
-            end,
-          },
-          python = {
-            function()
-              return {
-                exe = "ruff",
-                stdin = true,
-                args = { "format", "-" },
-              }
-            end,
-          },
+          python = require("formatter.filetypes.python").ruff,
           nix = require("formatter.filetypes.nix").nixfmt,
-          javascript = {
-            function()
-              return {
-                exe = "prettier",
-                stdin = true,
-                args = {
-                  "--with-node-modules",
-                  "--stdin-filepath",
-                  util.escape_path(util.get_current_buffer_file_path()),
-                },
-              }
-            end,
-          },
+          javascript = require("formatter.filetypes.javascript").prettier,
         },
       }
     end,
