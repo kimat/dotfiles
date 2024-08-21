@@ -344,17 +344,19 @@ plugins = {
   },
   -- {
   --   "OXY2DEV/markview.nvim",
-  --   ft = { "markdown" },
+  --   lazy = "false",
   --   -- dependencies = { "nvim-tree/nvim-web-devicons" },
   --   config = function()
   --     require("markview").setup()
   --   end,
   -- },
+
   -- {
   --   "lukas-reineke/headlines.nvim",
   --   dependencies = "nvim-treesitter/nvim-treesitter",
   --   config = true, -- or `opts = {}`
   -- },
+
   {
     "MeanderingProgrammer/markdown.nvim",
     name = "render-markdown", -- Only needed if you have another plugin named markdown.nvim
