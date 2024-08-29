@@ -95,7 +95,8 @@ bind stage - status-revert                     # discard changes in tracked file
 # }}}
 
 # Stash mode Bindings {{{
-bind stash p ?git stash pop "%(stash)"
+bind stash a ?git stash apply "%(stash)"
+bind stash d !git stash drop "%(stash)"
 # }}}
 
 # Diff mode Bindings {{{
