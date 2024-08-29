@@ -164,30 +164,137 @@ plugins = {
   {
     "hrsh7th/nvim-cmp",
     config = function()
-      require("cmp").setup {
-        -- mapping = cmp.mapping.preset.insert {
-        --   ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-        --   ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        --   ["<C-Space>"] = cmp.mapping.complete(),
-        --   ["<C-e>"] = cmp.mapping.abort(),
-        --   ["<CR>"] = cmp.mapping.confirm { select = true }, -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-        -- },
+      local cmp = require "cmp"
+      cmp.setup {
+        mapping = cmp.mapping.preset.insert {},
         snippet = {
           expand = function(args)
-            require("luasnip").lsp_expand(args.body)
+            vim.snippet.expand(args.body)
           end,
         },
         sources = {
           { name = "nvim_lsp" },
-          { name = "luasnip" },
         },
       }
     end,
   },
-  -- { "hrsh7th/cmp-nvim-lsp" },
-  { "saadparwaiz1/cmp_luasnip" },
-  -- { "hrsh7th/nvim-cmp" },
-  { "neovim/nvim-lspconfig" },
+  -- { "saadparwaiz1/cmp_luasnip" },
+
+  { "VonHeikemen/lsp-zero.nvim", branch = "v4.x" },
+  { "hrsh7th/cmp-nvim-lsp" },
+  {
+    "neovim/nvim-lspconfig",
+    config = function()
+      -- lsp_attach is where you enable features that only work
+      -- if there is a language server active in the file
+      vim.lsp.set_log_level "info"
+      local lsp_attach = function(client, bufnr)
+        local opts = { buffer = bufnr }
+
+        vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
+        vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
+        vim.keymap.set(
+          "n",
+          "gD",
+          "<cmd>lua vim.lsp.buf.declaration()<cr>",
+          opts
+        )
+        vim.keymap.set(
+          "n",
+          "gi",
+          "<cmd>lua vim.lsp.buf.implementation()<cr>",
+          opts
+        )
+        vim.keymap.set(
+          "n",
+          "go",
+          "<cmd>lua vim.lsp.buf.type_definition()<cr>",
+          opts
+        )
+        vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
+        vim.keymap.set(
+          "n",
+          "gs",
+          "<cmd>lua vim.lsp.buf.signature_help()<cr>",
+          opts
+        )
+        vim.keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
+        vim.keymap.set(
+          { "n", "x" },
+          "<F3>",
+          "<cmd>lua vim.lsp.buf.format({async = true})<cr>",
+          opts
+        )
+      end
+      require("lsp-zero").extend_lspconfig {
+        sign_text = true,
+        lsp_attach = lsp_attach,
+        capabilities = require("cmp_nvim_lsp").default_capabilities(),
+      }
+      require("lspconfig").vale_ls.setup {
+        init_options = {
+          installVale = false, -- needs to be set, since false by default
+          syncOnStartup = true,
+        },
+      }
+      require("lspconfig").typos_lsp.setup {
+        filetypes = { "*" },
+      }
+      -- require("lspconfig").typos_lsp.setup {
+      --   filetypes = { "*" },
+      --   -- Logging level of the language server. Logs appear in :LspLog. Defaults to error.
+      --   cmd_env = { RUST_LOG = "error" },
+      --   cmd = { "typos-lsp" },
+      --   init_options = {
+      --     -- Custom config. Used together with a config file found in the workspace or its parents,
+      --     -- taking precedence for settings declared in both.
+      --     -- Equivalent to the typos `--config` cli argument.
+      --     -- config = '~/code/typos-lsp/crates/typos-lsp/tests/typos.toml',
+      --     -- How typos are rendered in the editor, can be one of an Error, Warning, Info or Hint.
+      --     -- Defaults to error.
+      --     diagnosticSeverity = "Error",
+      --   },
+      -- }
+    end,
+  },
+  {
+    "folke/trouble.nvim",
+    opts = {}, -- for default options, refer to the configuration section for custom setup.
+    cmd = "Trouble",
+    keys = {
+      {
+        "<leader>xx",
+        "<cmd>Trouble diagnostics toggle<cr>",
+        desc = "Diagnostics (Trouble)",
+      },
+      {
+        "<leader>xX",
+        "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+        desc = "Buffer Diagnostics (Trouble)",
+      },
+      {
+        "<leader>cs",
+        "<cmd>Trouble symbols toggle focus=false<cr>",
+        desc = "Symbols (Trouble)",
+      },
+      {
+        "<leader>cl",
+        "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+        desc = "LSP Definitions / references / ... (Trouble)",
+      },
+      {
+        "<leader>xL",
+        "<cmd>Trouble loclist toggle<cr>",
+        desc = "Location List (Trouble)",
+      },
+      {
+        "<leader>xQ",
+        "<cmd>Trouble qflist toggle<cr>",
+        desc = "Quickfix List (Trouble)",
+      },
+    },
+  },
+
   {
     "mfussenegger/nvim-lint",
     config = function()
@@ -320,11 +427,18 @@ plugins = {
         "<Cmd>lua require('fzf-lua').files({ cmd = 'cat ~/my/zsh/.config/marks/configs' })<CR>"
       )
       map("n", "mm", "<Cmd>lua require('fzf-lua').files({ cwd = '~/my' })<CR>")
+      map("n", "lf", "<Cmd>FzfLua lsp_code_actions<CR>")
 
       require("fzf-lua").setup {
         -- default_previewer = "cat",
         files = { fzf_ansi = "", file_icons = false, git_icons = false },
         preview_layout = "vertical",
+        -- lsp = {
+        --   code_actions = {
+        --     previewer = "codeaction_native",
+        --     preview_pager = "delta --side-by-side --width=$FZF_PREVIEW_COLUMNS",
+        --   },
+        -- },
         -- TODO bat theme not working because bright?
         -- bat = {
         --   cmd    = "bat",
