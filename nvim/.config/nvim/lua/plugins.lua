@@ -522,7 +522,13 @@ vim.g.mapleader = " "
 require("lazy").setup(plugins, opts)
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   pattern = { "*" },
-  command = "FormatWrite",
+  -- command = "FormatWrite",
+  callback = function()
+    if string.match(vim.fn.getcwd(), "nixpkgs") then
+      return
+    end
+    vim.cmd "FormatWrite"
+  end,
 })
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   callback = function()
