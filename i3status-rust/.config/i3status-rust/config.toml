@@ -17,6 +17,16 @@ volume_muted = "\uf026"
 # sound =""
 
 [[block]]
+block = "keyboard_layout"
+driver = "sway"
+[[block.click]]
+button = "left"
+cmd = "swaymsg input type:keyboard xkb_layout be"
+[[block.click]]
+button = "right"
+cmd = "swaymsg input type:keyboard xkb_layout us"
+
+[[block]]
 block = "net"
 format = " $icon {$signal_strength $ssid $frequency via $device|Wired}"
 
