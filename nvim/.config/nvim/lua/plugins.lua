@@ -308,8 +308,8 @@ plugins = {
   {
     "mhartington/formatter.nvim",
     config = function()
-      local util = require "formatter.util"
       require("formatter").setup {
+        -- https://github.com/mhartington/formatter.nvim/tree/master/lua/formatter/filetypes
         filetype = {
           eruby = require("formatter.filetypes.eruby").erbformatter,
           ruby = require("formatter.filetypes.ruby").standardrb,
