@@ -10,6 +10,9 @@ vim.g.mapleader = ","
 -- vim.g.maplocalleader = 'e'
 map("n", "M", "m")
 
+-- yanky
+map("n", "<leader>p", "<Cmd>YankyRingHistory<CR>")
+
 -- dealing with splits should be seemless but the overwridden keymaps should be accessible somehow
 map("n", "<leader>h", "H")
 map("n", "<leader>j", "J")
