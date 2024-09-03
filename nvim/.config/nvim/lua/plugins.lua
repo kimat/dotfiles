@@ -11,7 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-plugins = {
+local plugins = {
   -- {
   --   "folke/tokyonight.nvim",
   --   lazy = false, -- make sure we load this during startup if it is your main colorscheme
@@ -101,7 +101,7 @@ plugins = {
         -- https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
         ensure_installed = {
           "vimdoc",
-          "ruby",
+          -- "ruby",
           "bash",
           "dockerfile",
           "gitignore",
@@ -161,76 +161,20 @@ plugins = {
     end,
   },
   -- { "L3MON4D3/LuaSnip" },
-  {
-    "hrsh7th/nvim-cmp",
-    config = function()
-      local cmp = require "cmp"
-      cmp.setup {
-        mapping = cmp.mapping.preset.insert {},
-        snippet = {
-          expand = function(args)
-            vim.snippet.expand(args.body)
-          end,
-        },
-        sources = {
-          { name = "nvim_lsp" },
-        },
-      }
-    end,
-  },
   -- { "saadparwaiz1/cmp_luasnip" },
 
-  { "VonHeikemen/lsp-zero.nvim", branch = "v4.x" },
-  { "hrsh7th/cmp-nvim-lsp" },
   {
     "neovim/nvim-lspconfig",
+    opts = {
+      autoformat = false,
+    },
     config = function()
+      -- vim.opt_local.formatexpr = "v:lua.vim.lsp.formatexpr"
+
       -- lsp_attach is where you enable features that only work
       -- if there is a language server active in the file
-      vim.lsp.set_log_level "info"
-      local lsp_attach = function(client, bufnr)
-        local opts = { buffer = bufnr }
+      -- vim.lsp.set_log_level "info"
 
-        vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
-        vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
-        vim.keymap.set(
-          "n",
-          "gD",
-          "<cmd>lua vim.lsp.buf.declaration()<cr>",
-          opts
-        )
-        vim.keymap.set(
-          "n",
-          "gi",
-          "<cmd>lua vim.lsp.buf.implementation()<cr>",
-          opts
-        )
-        vim.keymap.set(
-          "n",
-          "go",
-          "<cmd>lua vim.lsp.buf.type_definition()<cr>",
-          opts
-        )
-        vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
-        vim.keymap.set(
-          "n",
-          "gs",
-          "<cmd>lua vim.lsp.buf.signature_help()<cr>",
-          opts
-        )
-        vim.keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
-        vim.keymap.set(
-          { "n", "x" },
-          "<F3>",
-          "<cmd>lua vim.lsp.buf.format({async = true})<cr>",
-          opts
-        )
-      end
-      require("lsp-zero").extend_lspconfig {
-        sign_text = true,
-        lsp_attach = lsp_attach,
-        capabilities = require("cmp_nvim_lsp").default_capabilities(),
-      }
       require("lspconfig").vale_ls.setup {
         init_options = {
           installVale = false, -- needs to be set, since false by default
@@ -239,6 +183,52 @@ plugins = {
       }
       require("lspconfig").typos_lsp.setup {
         filetypes = { "*" },
+      }
+      require("lspconfig").lua_ls.setup {
+        on_init = function(client)
+          local path = client.workspace_folders[1].name
+          if
+            vim.loop.fs_stat(path .. "/.luarc.json")
+            or vim.loop.fs_stat(path .. "/.luarc.jsonc")
+          then
+            return
+          end
+          client.config.settings.Lua =
+            vim.tbl_deep_extend("force", client.config.settings.Lua, {
+              runtime = { version = "LuaJIT" },
+              -- Make the server aware of Neovim runtime files
+              workspace = {
+                checkThirdParty = false,
+                library = {
+                  vim.env.VIMRUNTIME,
+                  "${3rd}/luv/library",
+                },
+              },
+            })
+        end,
+        settings = {
+          Lua = {},
+        },
+      }
+      require("lspconfig").bashls.setup {}
+      require("lspconfig").yamlls.setup {}
+      require("lspconfig").ruby_lsp.setup {
+        filetypes = { "ruby", "eruby" },
+        init_options = { formatter = { nil } },
+        -- cmd = { "docker", "compose", "exec", "-T", "app", "ruby-lsp" },
+        single_file_support = true,
+        -- init_options = {
+        --   enabledFeatures = {
+        --     "signatureHelps",
+        --     -- "documentHighlights",
+        --     -- "documentSymbols",
+        --     -- "foldingRanges",
+        --     -- "selectionRanges",
+        --     -- "formatting",
+        --     -- "codeActions",
+        --   },
+        -- },
+        settings = {},
       }
       -- require("lspconfig").typos_lsp.setup {
       --   filetypes = { "*" },
@@ -257,6 +247,51 @@ plugins = {
       -- }
     end,
   },
+  { -- show as you type, lsp signature_help
+    "ray-x/lsp_signature.nvim",
+    -- event = "VeryLazy",
+    opts = {},
+    config = function(_, opts)
+      require("lsp_signature").setup(opts)
+    end,
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    config = function()
+      local cmp = require "cmp"
+      cmp.setup {
+        mapping = cmp.mapping.preset.insert {
+          ["<CR>"] = cmp.mapping.confirm { select = true }, -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        },
+        -- snippet = {
+        --   expand = function(args)
+        --     vim.snippet.expand(args.body)
+        --   end,
+        -- },
+        sources = {
+          { name = "nvim_lsp" },
+          { name = "buffer" },
+        },
+        -- formatting = {
+        --   format = function(entry, vim_item)
+        --     local kind = vim_item.kind
+        --     vim_item.kind = (icons[kind] or "?") .. " " .. kind
+        --     local source = entry.source.name
+        --     vim_item.menu = "->" .. icons[source]
+        --     local item = entry:get_completion_item()
+        --     -- log.debug(item)
+        --     if item.detail then
+        --       vim_item.menu = item.detail
+        --     end
+        --     return vim_item
+        --   end,
+        -- },
+      }
+    end,
+  },
+  { "hrsh7th/cmp-nvim-lsp" },
+  -- { "VonHeikemen/lsp-zero.nvim", branch = "v4.x" },
+
   {
     "folke/trouble.nvim",
     opts = {}, -- for default options, refer to the configuration section for custom setup.
@@ -294,6 +329,9 @@ plugins = {
       },
     },
   },
+
+  -- { "hrsh7th/cmp-nvim-lsp" },
+  -- { "saadparwaiz1/cmp_luasnip" },
 
   {
     "mfussenegger/nvim-lint",
@@ -355,17 +393,17 @@ plugins = {
   --   end
   -- },
 
-  -- {
-  --   'plasticboy/vim-markdown',
-  --   config = function()
-  --     vim.g.vim_markdown_no_default_key_mappings = 1
-  --     vim.g.vim_markdown_new_list_item_indent = 0
-  --     vim.g.vim_markdown_no_extensions_in_markdown = 1
-  --     vim.g.vim_markdown_folding_style_pythonic = 1
-  --     vim.g.vim_markdown_override_foldtext = 0
-  --     vim.g.vim_markdown_folding_level = 1
-  --   end
-  -- },
+  {
+    "plasticboy/vim-markdown",
+    config = function()
+      vim.g.vim_markdown_no_default_key_mappings = 1
+      vim.g.vim_markdown_new_list_item_indent = 0
+      vim.g.vim_markdown_no_extensions_in_markdown = 1
+      vim.g.vim_markdown_folding_style_pythonic = 1
+      vim.g.vim_markdown_override_foldtext = 0
+      vim.g.vim_markdown_folding_level = 1
+    end,
+  },
   {
     "windwp/nvim-autopairs",
     config = function()
@@ -572,7 +610,7 @@ plugins = {
     end,
   },
 }
-opts = {
+local opts = {
   dev = {
     path = "~/dev",
   },
@@ -605,6 +643,7 @@ opts = {
 }
 vim.g.mapleader = " "
 require("lazy").setup(plugins, opts)
+
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   pattern = { "*" },
   -- command = "FormatWrite",
@@ -620,5 +659,13 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
     require("lint").try_lint()
   end,
 })
+
 -- vim.treesitter.language.register("embedded_template", "html")
 vim.cmd.autocmd "BufRead,BufNewFile *.ejs se filetype=html"
+
+-- Make a function with three string parameters that loops ten times and prints each string each time
+local function printStringsTenTimes(str1, str2, str3)
+  for _ = 1, 10 do
+    print(str1)
+  end
+end
