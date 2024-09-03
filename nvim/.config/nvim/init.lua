@@ -1,13 +1,10 @@
--- global helpers
-api, cmd, fn, g = vim.api, vim.cmd, vim.fn, vim.g
-opt, wo = vim.opt, vim.wo
-fmt = string.format
+-- helper function to assign keymaps
 function map(mode, lhs, rhs, opts)
   local options = { noremap = true }
   if opts then
     options = vim.tbl_extend("force", options, opts)
   end
-  api.nvim_set_keymap(mode, lhs, rhs, options)
+  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
 --[[ vim.opt.setpath = ""
