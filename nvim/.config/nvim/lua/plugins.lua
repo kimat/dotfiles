@@ -257,6 +257,9 @@ local plugins = {
   },
   {
     "hrsh7th/nvim-cmp",
+    dependencies = {
+      "chrisgrieser/cmp_yanky",
+    },
     config = function()
       local cmp = require "cmp"
       cmp.setup {
@@ -271,6 +274,7 @@ local plugins = {
         sources = {
           { name = "nvim_lsp" },
           { name = "buffer" },
+          { name = "cmp_yanky" },
         },
         -- formatting = {
         --   format = function(entry, vim_item)
