@@ -19,8 +19,8 @@ vim.opt.smartcase = true
 vim.o.hlsearch = false
 
 -- searching should be visually sound
-opt.ignorecase = true
-opt.incsearch = true -- Shows the match while typing
+vim.opt.ignorecase = true
+vim.opt.incsearch = true -- Shows the match while typing
 
 -- so colorschemes look as they should
 vim.opt.termguicolors = true
@@ -45,7 +45,7 @@ vim.o.hidden = true
 
 -- some options don't seem to be configurable from lua yet?
 -- hidden chars should jump out
-vim.api.nvim_command([[ set list listchars+=tab:┌┐,trail:█ ]])
+vim.api.nvim_command [[ set list listchars+=tab:┌┐,trail:█ ]]
 
 -- cursor is black on black on termite + tmux
 -- vim.go.t_SI = "<Esc>Ptmux;<Esc><Esc>]50;CursorShape=1x7<Esc>"
@@ -56,7 +56,7 @@ vim.api.nvim_command([[ set list listchars+=tab:┌┐,trail:█ ]])
 -- added localoptions to the defaults
 
 -- don't wrap long lines
-vim.cmd("set nowrap")
+vim.cmd "set nowrap"
 
 -- just save more often
 vim.o.swapfile = false
