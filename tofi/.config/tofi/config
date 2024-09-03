@@ -102,7 +102,7 @@ default-result-background-corner-radius = 0
 # alternate-result-background-corner-radius = 0
 
 # Selection text
-selection-color = #F92672
+selection-color = #1A73E8
 selection-background = #00000000
 selection-background-padding = 0
 selection-background-corner-radius = 0
@@ -142,7 +142,7 @@ text-cursor-corner-radius = 0
 ### Text layout
 #
 # Prompt to display.
-prompt-text = "run: "
+prompt-text = ""
 
 # Extra horizontal padding between prompt and input.
 prompt-padding = 0
@@ -177,13 +177,13 @@ background-color = #1B1D1E
 outline-width = 4
 
 # Border outline color
-outline-color = #080800
+outline-color = #1B1D1E
 
 # Width of the border in pixels.
 border-width = 12
 
 # Border color
-border-color = #F92672
+border-color = #1B1D1E
 
 # Radius of window corners in pixels.
 corner-radius = 0
