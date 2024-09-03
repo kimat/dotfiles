@@ -266,6 +266,12 @@ local plugins = {
         mapping = cmp.mapping.preset.insert {
           ["<CR>"] = cmp.mapping.confirm { select = true }, -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         },
+        formatting = {
+          format = function(entry, vim_item)
+            vim_item.menu = entry.source.name
+            return vim_item
+          end,
+        },
         -- snippet = {
         --   expand = function(args)
         --     vim.snippet.expand(args.body)
