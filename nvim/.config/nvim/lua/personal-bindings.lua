@@ -13,7 +13,7 @@ map("n", "M", "m")
 -- yanky
 map("n", "<leader>p", "<Cmd>YankyRingHistory<CR>")
 
--- dealing with splits should be seemless but the overwridden keymaps should be accessible somehow
+-- dealing with splits should be seamless but the overridden keymaps should be accessible somehow
 map("n", "<leader>h", "H")
 map("n", "<leader>j", "J")
 map("n", "<leader>k", "K")
@@ -137,3 +137,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end, opts)
   end,
 })
+
+-- Trouble nvim
+map("n", "<leader>x", "<cmd>Trouble diagnostics toggle<cr>")
