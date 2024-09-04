@@ -70,7 +70,6 @@ local plugins = {
   },
   {
     -- https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
-
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
       "RRethy/nvim-treesitter-endwise",
@@ -161,30 +160,42 @@ local plugins = {
     end,
   },
   -- { "L3MON4D3/LuaSnip" },
-  -- { "saadparwaiz1/cmp_luasnip" },
 
   {
     "neovim/nvim-lspconfig",
+    dependencies = {
+      { "hrsh7th/cmp-nvim-lsp" },
+      {
+        "VonHeikemen/lsp-zero.nvim",
+        branch = "v4.x",
+        lazy = true,
+        config = false,
+      },
+    },
     opts = {
       autoformat = false,
     },
     config = function()
-      -- vim.opt_local.formatexpr = "v:lua.vim.lsp.formatexpr"
-
-      -- lsp_attach is where you enable features that only work
-      -- if there is a language server active in the file
-      -- vim.lsp.set_log_level "info"
-
-      require("lspconfig").vale_ls.setup {
-        init_options = {
-          installVale = false, -- needs to be set, since false by default
-          syncOnStartup = true,
-        },
+      vim.lsp.set_log_level "info"
+      local lspconfig = require "lspconfig"
+      -- set some defaults for each following lspconfig.SERVER_NAME.setup call
+      require("lsp-zero").extend_lspconfig {
+        -- sign_text = true,
+        capabilities = require("cmp_nvim_lsp").default_capabilities(),
       }
-      require("lspconfig").typos_lsp.setup {
+
+      -- lspconfig.vale_ls.setup {
+      --   init_options = {
+      --     installVale = false,
+      --     syncOnStartup = true,
+      --   },
+      -- }
+
+      lspconfig.typos_lsp.setup {
         filetypes = { "*" },
       }
-      require("lspconfig").lua_ls.setup {
+
+      lspconfig.lua_ls.setup {
         on_init = function(client)
           local path = client.workspace_folders[1].name
           if
@@ -210,9 +221,12 @@ local plugins = {
           Lua = {},
         },
       }
-      require("lspconfig").bashls.setup {}
-      require("lspconfig").yamlls.setup {}
-      require("lspconfig").ruby_lsp.setup {
+
+      lspconfig.bashls.setup {}
+
+      lspconfig.yamlls.setup {}
+
+      lspconfig.ruby_lsp.setup {
         filetypes = { "ruby", "eruby" },
         init_options = { formatter = { nil } },
         -- cmd = { "docker", "compose", "exec", "-T", "app", "ruby-lsp" },
@@ -230,7 +244,8 @@ local plugins = {
         -- },
         settings = {},
       }
-      -- require("lspconfig").typos_lsp.setup {
+
+      -- lspconfig.typos_lsp.setup {
       --   filetypes = { "*" },
       --   -- Logging level of the language server. Logs appear in :LspLog. Defaults to error.
       --   cmd_env = { RUST_LOG = "error" },
@@ -247,18 +262,22 @@ local plugins = {
       -- }
     end,
   },
-  { -- show as you type, lsp signature_help
-    "ray-x/lsp_signature.nvim",
-    -- event = "VeryLazy",
-    opts = {},
-    config = function(_, opts)
-      require("lsp_signature").setup(opts)
-    end,
-  },
+  -- { -- show as you type, lsp signature_help
+  --   "ray-x/lsp_signature.nvim",
+  --   -- event = "VeryLazy",
+  --   opts = {},
+  --   config = function(_, opts)
+  --     require("lsp_signature").setup(opts)
+  --   end,
+  -- },
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "chrisgrieser/cmp_yanky",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-nvim-lsp-signature-help",
+      "hrsh7th/cmp-path",
+      -- "hrsh7th/cmp-cmdline",
     },
     config = function()
       local cmp = require "cmp"
@@ -278,9 +297,12 @@ local plugins = {
         --   end,
         -- },
         sources = {
-          { name = "nvim_lsp" },
-          { name = "buffer" },
           { name = "cmp_yanky" },
+          { name = "buffer" },
+          { name = "nvim_lsp_signature_help" },
+          { name = "path" },
+          { name = "nvim_lsp" },
+          -- { name = "cmdline" },
         },
         -- formatting = {
         --   format = function(entry, vim_item)
@@ -299,7 +321,6 @@ local plugins = {
       }
     end,
   },
-  { "hrsh7th/cmp-nvim-lsp" },
   -- { "VonHeikemen/lsp-zero.nvim", branch = "v4.x" },
 
   {
@@ -340,7 +361,6 @@ local plugins = {
     },
   },
 
-  -- { "hrsh7th/cmp-nvim-lsp" },
   -- { "saadparwaiz1/cmp_luasnip" },
 
   {
@@ -546,7 +566,6 @@ local plugins = {
     "gbprod/yanky.nvim",
     opts = {},
   },
-
   -- viml based plugins
   {
     "previm/previm",
@@ -580,7 +599,6 @@ local plugins = {
   },
   { "tpope/vim-fugitive" },
   { "tpope/vim-rails" },
-  -- { "tpope/vim-endwise" },
   { "editorconfig/editorconfig-vim" },
   { "bogado/file-line" },
 
@@ -658,7 +676,7 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   pattern = { "*" },
   -- command = "FormatWrite",
   callback = function()
-    if string.match(vim.fn.getcwd(), "nixpkgs") then
+    if string.match(vim.fn.getcwd(), "/home.*/dev/.*") then
       return
     end
     vim.cmd "FormatWrite"
@@ -674,8 +692,8 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 vim.cmd.autocmd "BufRead,BufNewFile *.ejs se filetype=html"
 
 -- Make a function with three string parameters that loops ten times and prints each string each time
-local function printStringsTenTimes(str1, str2, str3)
-  for _ = 1, 10 do
-    print(str1)
-  end
-end
+-- function PrintStringsTenTimes(str1, str2, str3)
+--   for _ = 1, 10 do
+--     print(str1 .. str2 .. str3)
+--   end
+-- end
