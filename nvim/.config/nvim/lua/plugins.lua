@@ -467,7 +467,7 @@ local plugins = {
         "<Cmd>lua require('fzf-lua').files({ cmd = 'cat ~/my/zsh/.config/marks/configs' })<CR>"
       )
       map("n", "mm", "<Cmd>lua require('fzf-lua').files({ cwd = '~/my' })<CR>")
-      map("n", "lf", "<Cmd>FzfLua lsp_code_actions<CR>")
+      map("n", "ga", "<Cmd>FzfLua lsp_code_actions<CR>")
 
       require("fzf-lua").setup {
         -- default_previewer = "cat",
