@@ -379,6 +379,7 @@ local plugins = {
       require("formatter").setup {
         -- https://github.com/mhartington/formatter.nvim/tree/master/lua/formatter/filetypes
         filetype = {
+          sh = require("formatter.filetypes.sh").shfmt,
           eruby = require("formatter.filetypes.eruby").erbformatter,
           ruby = require("formatter.filetypes.ruby").standardrb,
           lua = require("formatter.filetypes.lua").stylua,
