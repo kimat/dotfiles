@@ -11,7 +11,7 @@ vim.g.mapleader = ","
 map("n", "M", "m")
 
 -- yanky
-map("n", "<leader>p", "<Cmd>YankyRingHistory<CR>")
+map("n", "<leader>p", "<Cmd>lua yanky()<CR><CR>")
 
 -- dealing with splits should be seamless but the overridden keymaps should be accessible somehow
 map("n", "<leader>h", "H")
