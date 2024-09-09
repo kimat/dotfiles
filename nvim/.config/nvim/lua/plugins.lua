@@ -473,6 +473,12 @@ local plugins = {
         -- default_previewer = "cat",
         files = { fzf_ansi = "", file_icons = false, git_icons = false },
         preview_layout = "vertical",
+        winopts = {
+          height = 0.95,
+          border = "none",
+          preview_border = "rounded",
+        },
+
         -- lsp = {
         --   code_actions = {
         --     previewer = "codeaction_native",
