@@ -59,7 +59,7 @@ bind status x !git clean -xfd                   # delete everything untracked
 bind status D !rm %(file)
 # bind status p !@bash -c "git push -q && tmux display-message '✔️  git push' || tmux display-message '❌ git push'"
 bind status p !>bash -c "git push"
-bind status P !>bash -c "git push -f"
+bind status P !git push -f
 bind status F !@bash -c "git fetch -f --tags && git pull --rebase"
 
 # disable defaults
