@@ -98,11 +98,7 @@ map("n", "es", "<Cmd>silent !firefox-send ctrl+Page_Up<CR>")
 map("n", "ef", "<Cmd>silent !firefox-send ctrl+Page_Down<CR>")
 map("n", "er", "<Cmd>silent !firefox-send ctrl+r<CR>")
 map("n", "ey", "<Cmd>silent !firefox-copy-current-page-as-markdown<CR>")
-map(
-  "n",
-  "eu",
-  "<Cmd>silent !firefox-copy-current-page-as-markdown && firefox-send ctrl+w<CR>"
-)
+map("n", "eu", "<Cmd>silent !firefox-copy-current-page-as-markdown --close<CR>")
 
 -- :help changelist
 map("n", "g.", "g;")
