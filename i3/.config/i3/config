@@ -12,9 +12,12 @@
 
 set $mod Mod4
 
+input type:keyboard {
+  xkb_layout be
+}
 # reload config {{{
 # reload the configuration file
-  bindsym $mod+Shift+r reload ; exec swaymsg input type:keyboard xkb_layout "be"
+bindsym $mod+Shift+r reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 # bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
