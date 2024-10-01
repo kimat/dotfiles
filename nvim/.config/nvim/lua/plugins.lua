@@ -518,33 +518,19 @@ local plugins = {
   -- },
 
   {
-    "MeanderingProgrammer/markdown.nvim",
-    name = "render-markdown", -- Only needed if you have another plugin named markdown.nvim
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    "MeanderingProgrammer/render-markdown.nvim",
+    opts = {},
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    },
     config = function()
       require("render-markdown").setup {
-        highlights = {
-          heading = {
-            -- Background of heading line
-            backgrounds = {
-              "MarkdownHBg",
-              "MarkdownHBg",
-              "MarkdownHBg",
-            },
-            -- Foreground of heading character only
-            foregrounds = {
-              "markdownH1",
-              "markdownH2",
-              "markdownH3",
-              "markdownH4",
-              "markdownH5",
-              "markdownH6",
-            },
-          },
-          -- Horizontal break
-          dash = "LineNr",
-          -- Code blocks
-          code = "MarkdownCodeBlock",
+        sign = {
+          -- Turn on / off sign rendering
+          enabled = false,
+          -- Applies to background of sign text
+          highlight = "RenderMarkdownSign",
         },
       }
     end,
