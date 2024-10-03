@@ -15,6 +15,12 @@ set $mod Mod4
 input type:keyboard {
   xkb_layout be
 }
+input type:touchpad {
+  natural_scroll enabled
+  tap enabled
+}
+
+
 # reload config {{{
 # reload the configuration file
 bindsym $mod+Shift+r reload
