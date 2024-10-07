@@ -369,6 +369,7 @@ local plugins = {
       -- https://github.com/mfussenegger/nvim-lint#available-linters
       require("lint").linters_by_ft = {
         javascript = { "eslint" },
+        ruby = { "standardrb" },
       }
     end,
   },
@@ -381,7 +382,8 @@ local plugins = {
         filetype = {
           sh = require("formatter.filetypes.sh").shfmt,
           eruby = require("formatter.filetypes.eruby").erbformatter,
-          ruby = require("formatter.filetypes.ruby").standardrb,
+          -- ruby = require("formatter.filetypes.ruby").standardrb,
+          ruby = require("formatter.filetypes.ruby").rubocop,
           lua = require("formatter.filetypes.lua").stylua,
           terraform = {
             function()
