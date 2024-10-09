@@ -252,5 +252,6 @@ exec DNS_SERVER=$(cat /etc/resolv.conf | grep nameserver | head -n 1 | sed 's/.*
 
 # sway specific
 exec $HOME/my/scripts/bin/my-idle
+exec mako
 for_window [app_id="floating"] floating enable
 # }}}
