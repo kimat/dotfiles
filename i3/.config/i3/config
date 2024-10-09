@@ -254,4 +254,5 @@ exec DNS_SERVER=$(cat /etc/resolv.conf | grep nameserver | head -n 1 | sed 's/.*
 exec $HOME/my/scripts/bin/my-idle
 exec mako
 for_window [app_id="floating"] floating enable
+for_window [app_id="firefox" title=""] floating enable, move position 1920 px 0 px
 # }}}
