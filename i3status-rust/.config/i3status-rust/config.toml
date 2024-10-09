@@ -18,8 +18,8 @@ volume_muted = "\uf026"
 
 [[block]]
 block = "music"
-format_alt = "$icon $artist - $title {     $prev   $play   $next |}"
-format = "                                 \uf001                                 "
+format = "$icon $artist - $title {     $prev   $play   $next |}"
+format_alt = "                                 \uf001                                 "
 [[block]]
 block = "sound"
 format = "{$volume| 0%} $icon"
