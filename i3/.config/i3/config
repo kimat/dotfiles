@@ -218,6 +218,7 @@ bindsym $mod+r mode "resize"
 bar {
   # mode invisible
   status_command i3status-rs
+  position bottom
 }
 bindsym $mod+F11 bar mode toggle
 # }}}
