@@ -668,18 +668,19 @@ vim.g.mapleader = " "
 require("lazy").setup(plugins, opts)
 
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-  pattern = { "*" },
-  -- command = "FormatWrite",
   callback = function()
-    if string.match(vim.fn.getcwd(), "/home.*/dev/.*") then
+    require("lint").try_lint()
+  end,
+})
+
+vim.api.nvim_create_augroup("__formatter__", { clear = true })
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  group = "__formatter__",
+  callback = function()
+    if string.match(vim.fn.getcwd(), "/home.*/dev/nix/.*") then
       return
     end
     vim.cmd "FormatWrite"
-  end,
-})
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-  callback = function()
-    require("lint").try_lint()
   end,
 })
 
