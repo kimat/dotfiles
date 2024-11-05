@@ -176,7 +176,7 @@ local plugins = {
       autoformat = false,
     },
     config = function()
-      vim.lsp.set_log_level "info"
+      -- vim.lsp.set_log_level "info"
       local lspconfig = require "lspconfig"
       -- set some defaults for each following lspconfig.SERVER_NAME.setup call
       require("lsp-zero").extend_lspconfig {
