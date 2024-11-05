@@ -1,42 +1,42 @@
 -- saving is something that I do (too?) often
-map("n", "<esc>", "<Cmd>:w<cr>")
--- map("n", "<esc>", "<Cmd>FormatWrite<cr>")
+Map("n", "<esc>", "<Cmd>:w<cr>")
+-- Map("n", "<esc>", "<Cmd>FormatWrite<cr>")
 
 -- kill window faster
-map("n", "<C-c>", ":q<cr>")
+Map("n", "<C-c>", ":q<cr>")
 
 -- leaders
 vim.g.mapleader = ","
 -- vim.g.maplocalleader = 'e'
-map("n", "M", "m")
+Map("n", "M", "m")
 
 -- yanky
-map("n", "<leader>p", "<Cmd>lua yanky()<CR><CR>")
+Map("n", "<leader>p", "<Cmd>lua yanky()<CR><CR>")
 
 -- dealing with splits should be seamless but the overridden keymaps should be accessible somehow
-map("n", "<leader>h", "H")
-map("n", "<leader>j", "J")
-map("n", "<leader>k", "K")
-map("n", "<leader>l", "L")
-map("n", "-", "<C-W>s<C-W>j")
-map("n", "|", "<C-W>v<C-W>l")
-map("n", "H", "<C-W>h")
-map("n", "J", "<C-W>j")
-map("n", "K", "<C-W>k")
-map("n", "L", "<C-W>l")
+Map("n", "<leader>h", "H")
+Map("n", "<leader>j", "J")
+Map("n", "<leader>k", "K")
+Map("n", "<leader>l", "L")
+Map("n", "-", "<C-W>s<C-W>j")
+Map("n", "|", "<C-W>v<C-W>l")
+Map("n", "H", "<C-W>h")
+Map("n", "J", "<C-W>j")
+Map("n", "K", "<C-W>k")
+Map("n", "L", "<C-W>l")
 
 -- I don't use z.
-map("n", "zz", "ZZ")
+Map("n", "zz", "ZZ")
 
 -- I need a way to copy the current filepath
-map("n", "<leader>c", ':let @+=expand("%:.").":".line(".")<CR>')
-map("n", "<leader>C", ':let @+=expand("%:.")<CR>')
+Map("n", "<leader>c", ':let @+=expand("%:.").":".line(".")<CR>')
+Map("n", "<leader>C", ':let @+=expand("%:.")<CR>')
 
 -- I need a faster way to insert a break point
-map("n", ",b", "obinding.pry<ESC>^")
+Map("n", ",b", "obinding.pry<ESC>^")
 
 -- gx should open any link under the cursor
-map(
+Map(
   "n",
   "gx",
   [[:silent execute '!$BROWSER ' . shellescape(expand('<cfile>'), 1)<CR>]],
@@ -78,30 +78,30 @@ function _G.browse(url)
   vim.fn.system("$BROWSER " .. url)
 end
 
-map("n", "gx", "<Cmd>lua browse(url_on_line())<CR>")
-map("v", "gx", ':luado os.execute("$BROWSER " .. line:match("http%S+"))<CR>')
+Map("n", "gx", "<Cmd>lua browse(url_on_line())<CR>")
+Map("v", "gx", ':luado os.execute("$BROWSER " .. line:match("http%S+"))<CR>')
 
 -- search
-map("n", "gr", ":grep <C-R><C-W>")
-map("n", "<C-n>", ":cn<CR>")
+Map("n", "gr", ":grep <C-R><C-W>")
+Map("n", "<C-n>", ":cn<CR>")
 vim.opt.grepprg = "rg --no-heading --vimgrep --hidden -g '!.git'"
 vim.opt.grepformat = "%f:%l:%c:%m"
 vim.opt.path = "$PWD/**"
 
--- map("n", "es", "<Cmd>e ~/my/tips/stack.md<CR>")
+-- Map("n", "es", "<Cmd>e ~/my/tips/stack.md<CR>")
 
-map("n", "el", "<Cmd>e ~/my/tips/favorite/links<CR>")
-map("n", "eg", "<Cmd>silent !firefox-send Home<CR>")
-map("n", "ed", "<Cmd>silent !firefox-send ctrl+w<CR>")
-map("n", "eD", "<Cmd>silent !firefox-send ctrl+shift+t<CR>")
-map("n", "es", "<Cmd>silent !firefox-send ctrl+Page_Up<CR>")
-map("n", "ef", "<Cmd>silent !firefox-send ctrl+Page_Down<CR>")
-map("n", "er", "<Cmd>silent !firefox-send ctrl+r<CR>")
-map("n", "ey", "<Cmd>silent !firefox-copy-current-page-as-markdown<CR>")
-map("n", "eu", "<Cmd>silent !firefox-copy-current-page-as-markdown --close<CR>")
+Map("n", "el", "<Cmd>e ~/my/tips/favorite/links<CR>")
+Map("n", "eg", "<Cmd>silent !firefox-send Home<CR>")
+Map("n", "ed", "<Cmd>silent !firefox-send ctrl+w<CR>")
+Map("n", "eD", "<Cmd>silent !firefox-send ctrl+shift+t<CR>")
+Map("n", "es", "<Cmd>silent !firefox-send ctrl+Page_Up<CR>")
+Map("n", "ef", "<Cmd>silent !firefox-send ctrl+Page_Down<CR>")
+Map("n", "er", "<Cmd>silent !firefox-send ctrl+r<CR>")
+Map("n", "ey", "<Cmd>silent !firefox-copy-current-page-as-markdown<CR>")
+Map("n", "eu", "<Cmd>silent !firefox-copy-current-page-as-markdown --close<CR>")
 
 -- :help changelist
-map("n", "g.", "g;")
+Map("n", "g.", "g;")
 
 -- https://www.lua.org/pil/3.4.html
 
@@ -135,4 +135,4 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 -- Trouble nvim
-map("n", "<leader>x", "<cmd>Trouble diagnostics toggle<cr>")
+Map("n", "<leader>x", "<cmd>Trouble diagnostics toggle<cr>")

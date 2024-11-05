@@ -445,20 +445,20 @@ local plugins = {
     -- 'kyazdani42/nvim-web-devicons' } -- optional for icons
     -- use {'vijaymarupudi/nvim-fzf-commands'}
     config = function()
-      map("n", "mo", "<Cmd>FzfLua files<CR>")
-      map("n", "ml", "<Cmd>FzfLua buffers<CR>")
-      map(
+      Map("n", "mo", "<Cmd>FzfLua files<CR>")
+      Map("n", "ml", "<Cmd>FzfLua buffers<CR>")
+      Map(
         "n",
         "mt",
         "<Cmd>lua require('fzf-lua').files({ cwd = '~/my/tips' })<CR>"
       )
-      map(
+      Map(
         "n",
         "mc",
         "<Cmd>lua require('fzf-lua').files({ cmd = 'cat ~/.config/marks/configs' })<CR>"
       )
-      map("n", "mm", "<Cmd>lua require('fzf-lua').files({ cwd = '~/my' })<CR>")
-      map("n", "ga", "<Cmd>FzfLua lsp_code_actions<CR>")
+      Map("n", "mm", "<Cmd>lua require('fzf-lua').files({ cwd = '~/my' })<CR>")
+      Map("n", "ga", "<Cmd>FzfLua lsp_code_actions<CR>")
 
       require("fzf-lua").setup {
         -- default_previewer = "cat",
@@ -574,16 +574,16 @@ local plugins = {
   {
     "esamattis/slimux", -- viml based plugin
     config = function()
-      map("v", "ee", ":SlimuxREPLSendSelection<CR>")
-      map("n", "ee", "<Cmd>SlimuxREPLSendLine<CR>")
-      map("n", "ep", "vip:SlimuxREPLSendSelection<CR>")
-      map("n", "ex", "<Cmd>SlimuxGlobalConfigure<CR>")
-      map(
+      Map("v", "ee", ":SlimuxREPLSendSelection<CR>")
+      Map("n", "ee", "<Cmd>SlimuxREPLSendLine<CR>")
+      Map("n", "ep", "vip:SlimuxREPLSendSelection<CR>")
+      Map("n", "ex", "<Cmd>SlimuxGlobalConfigure<CR>")
+      Map(
         "n",
         "ej",
         ':let @t=expand("%:.").":".line(".")<CR>:SlimuxShellRun spring rspec <c-r>t<CR>'
       )
-      map(
+      Map(
         "n",
         "eJ",
         ':let @t=expand("%:.")<CR>:SlimuxShellRun spring rspec <c-r>t<CR>'
