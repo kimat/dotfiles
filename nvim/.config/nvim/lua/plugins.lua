@@ -427,17 +427,6 @@ local plugins = {
   -- },
 
   {
-    "plasticboy/vim-markdown",
-    config = function()
-      vim.g.vim_markdown_no_default_key_mappings = 1
-      vim.g.vim_markdown_new_list_item_indent = 0
-      vim.g.vim_markdown_no_extensions_in_markdown = 1
-      vim.g.vim_markdown_folding_style_pythonic = 1
-      vim.g.vim_markdown_override_foldtext = 0
-      vim.g.vim_markdown_folding_level = 1
-    end,
-  },
-  {
     "windwp/nvim-autopairs",
     config = function()
       require("nvim-autopairs").setup()
@@ -538,6 +527,26 @@ local plugins = {
     end,
   },
   {
+    "plasticboy/vim-markdown",
+    config = function()
+      vim.g.vim_markdown_no_default_key_mappings = 1
+      vim.g.vim_markdown_new_list_item_indent = 0
+      vim.g.vim_markdown_no_extensions_in_markdown = 1
+      vim.g.vim_markdown_folding_style_pythonic = 1
+      vim.g.vim_markdown_override_foldtext = 0
+      vim.g.vim_markdown_folding_level = 1
+    end,
+  },
+  {
+    "previm/previm", -- ⚠️ viml based
+    ft = "markdown",
+    config = function()
+      vim.g.previm_open_cmd = "firefox"
+      vim.g.previm_plantuml_imageprefix = "http://localhost:8080/plantuml/img/"
+    end,
+  },
+
+  {
     "shellRaining/hlchunk.nvim",
     enabled = true,
     -- event = "LazyFile",
@@ -561,17 +570,9 @@ local plugins = {
     "gbprod/yanky.nvim",
     opts = {},
   },
-  -- viml based plugins
+
   {
-    "previm/previm",
-    ft = "markdown",
-    config = function()
-      vim.g.previm_open_cmd = "firefox"
-      vim.g.previm_plantuml_imageprefix = "http://localhost:8080/plantuml/img/"
-    end,
-  },
-  {
-    "esamattis/slimux",
+    "esamattis/slimux", -- viml based plugin
     config = function()
       map("v", "ee", ":SlimuxREPLSendSelection<CR>")
       map("n", "ee", "<Cmd>SlimuxREPLSendLine<CR>")
@@ -592,10 +593,18 @@ local plugins = {
       -- map <localleader>U :let @t=expand("%:.")<CR>:SlimuxShellRun cucumber -p local <c-r>t<CR>
     end,
   },
-  { "tpope/vim-fugitive" },
-  { "tpope/vim-rails" },
-  { "editorconfig/editorconfig-vim" },
-  { "bogado/file-line" },
+  {
+    "tpope/vim-fugitive", -- viml based plugin
+  },
+  {
+    "tpope/vim-rails", -- viml based plugin
+  },
+  {
+    "editorconfig/editorconfig-vim", -- viml based plugin
+  },
+  {
+    "bogado/file-line", -- viml based plugin
+  },
 
   -- reformat text
   { "AndrewRadev/splitjoin.vim" },
