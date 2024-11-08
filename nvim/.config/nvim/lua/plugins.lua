@@ -22,6 +22,9 @@ local plugins = {
   --   end,
   -- },
   {
+    "kevinhwang91/nvim-ufo",
+  },
+  {
     "mcchrish/zenbones.nvim",
     lazy = false,
     priority = 1000,
@@ -57,6 +60,9 @@ local plugins = {
   --     -- vim.cmd 'hi CursorLine cterm=NONE ctermbg=lightblue guibg=lightblue'
   --   end,
   -- },
+  {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+  },
   {
     "numToStr/Comment.nvim",
     config = function()
