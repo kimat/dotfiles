@@ -236,6 +236,8 @@ for_window [class="peek"] floating disable
 workspace_layout tabbed
 # }}}
 
+floating_maximum_size -1 x -1
+
 # autostart apps {{{
 exec i3-sensible-terminal
 exec --no-startup-id daemonize $HOME/my/scripts/bin/last-i3-focus.py
