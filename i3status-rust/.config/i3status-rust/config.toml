@@ -20,6 +20,8 @@ volume_muted = "\uf026"
 block = "music"
 format = "$icon $artist - $title {     $prev   $play   $next |}"
 format_alt = "                                 \uf001                                 "
+if_command = '[ "$(playerctl status)" == "Playing" ]'
+
 [[block]]
 block = "sound"
 format = "{$volume| 0%} $icon"
