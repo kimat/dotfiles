@@ -24,7 +24,7 @@ if_command = '[ "$(playerctl status)" == "Playing" ]'
 
 [[block]]
 block = "sound"
-format = "{$volume| 0%} $icon"
+format = "$icon{$volume| 0%}"
 driver = "auto"
 [[block.click]]
 button = "left"
@@ -33,23 +33,26 @@ cmd = "xdotool key XF86AudioMute"
 [[block]]
 block = "keyboard_layout"
 driver = "sway"
+# format = "$layout ($variant)"
+[block.mappings]
+"Belgian (N/A)" = "🇧🇪"
+"English (US)" = "🇺🇸"
 [[block.click]]
 button = "left"
-cmd = "swaymsg input type:keyboard xkb_layout be"
-[[block.click]]
-button = "right"
-cmd = "swaymsg input type:keyboard xkb_layout us"
+cmd = "toggle-keyboard"
 
 [[block]]
 block = "net"
 interval = 1
-format = " $icon {$signal_strength $ssid $frequency via $device|Wired}"
+format = " $icon {$ssid}"
+format_alt = " $icon {$signal_strength $ssid $frequency via $device|Wired}"
 
 [[block]]
 if_command = "test -d /sys/class/power_supply/BAT0"
 block = "battery"
 interval = 10
-format = " $time battery remaining"
+# format = " $time battery remaining"
+format = "󱊣 $percentage"
 
 [[block]]
 block = "disk_space"
@@ -58,21 +61,23 @@ info_type = "available"
 interval = 20
 warning = 20.0
 alert = 10.0
-format = "$available"
+format = " $available"
 
 [[block]]
 block = "custom"
-command = 'light | sed -r "s,(.*)\..*,\1% light,g"'
+command = 'light | sed -r "s,\..*,,g"'
 interval = 10
+format = " $text%"
 
 
 [[block]]
 block = "cpu"
 interval = 1
-format = "{$utilization} cpu"
+format = " {$utilization}"
 
 [[block]]
 block = "amd_gpu"
+if_command = "lspci -v | grep 'AMD/ATI' >/dev/null"
 interval = 1
 format = "$utilization gpu"
 format_alt = "GPU MEM: $vram_used_percents ($vram_used/$vram_total) "
