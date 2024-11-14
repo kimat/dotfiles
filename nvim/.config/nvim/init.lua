@@ -7,10 +7,9 @@ function Map(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
---[[ vim.opt.setpath = ""
-vim.opt.suffixesadd = ".lua" ]]
+require "lazy/bootstrap"
 require "better-defaults"
 require "personal-bindings"
-require "plugins"
 require "styling"
 require "folding"
+require "lazy/setup"

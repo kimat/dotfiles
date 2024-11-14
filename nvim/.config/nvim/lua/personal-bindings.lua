@@ -7,6 +7,7 @@ Map("n", "<C-c>", ":q<cr>")
 
 -- leaders
 vim.g.mapleader = ","
+vim.g.maplocalleader = "\\"
 -- vim.g.maplocalleader = 'e'
 Map("n", "M", "m")
 

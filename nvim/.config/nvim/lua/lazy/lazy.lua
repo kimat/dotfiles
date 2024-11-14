@@ -1,0 +1,47 @@
+-- local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
+-- if not vim.loop.fs_stat(lazypath) then
+--   vim.fn.system {
+--     "git",
+--     "clone",
+--     "--filter=blob:none",
+--     "https://github.com/folke/lazy.nvim.git",
+--     "--branch=stable", -- latest stable release
+--     lazypath,
+--   }
+-- end
+-- vim.opt.rtp:prepend(lazypath)
+-- local opts = {
+--   spec = {
+--     { import = "plugins" },
+--   },
+--   dev = {
+--     path = "~/dev",
+--   },
+--   install = {
+--     -- install missing plugins on startup. This doesn't increase startup time.
+--     missing = true,
+--     -- try to load one of these colorschemes when starting an installation during startup
+--     colorscheme = { "zenbones" },
+--     -- colorscheme = function()
+--     --   require("tokyonight").load()
+--     -- end,
+--   },
+--   ui = {
+--     border = "single",
+--     icons = {
+--       cmd = "⌘",
+--       config = "🛠",
+--       event = "📅",
+--       ft = "📂",
+--       init = "⚙",
+--       keys = "🗝",
+--       plugin = "🔌",
+--       runtime = "💻",
+--       source = "📄",
+--       start = "🚀",
+--       task = "📌",
+--       lazy = "💤 ",
+--     },
+--   },
+-- }
+-- require("lazy").setup(opts)
