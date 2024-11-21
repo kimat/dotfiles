@@ -33,7 +33,7 @@ return {
         -- https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
         ensure_installed = {
           "vimdoc",
-          -- "ruby",
+          "ruby",
           "bash",
           "dockerfile",
           "css",
