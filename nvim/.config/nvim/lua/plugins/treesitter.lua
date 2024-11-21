@@ -120,4 +120,13 @@ return {
       }
     end,
   },
+  {
+    "Wansmer/treesj",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    config = function()
+      require("treesj").setup {
+        vim.keymap.set("n", "es", require("treesj").toggle),
+      }
+    end,
+  },
 }
