@@ -52,7 +52,7 @@ if_command = "test -d /sys/class/power_supply/BAT0"
 block = "battery"
 interval = 10
 # format = " $time battery remaining"
-format = "󱊣 $percentage"
+format = "󱊣 $percentage $time"
 
 [[block]]
 block = "disk_space"
