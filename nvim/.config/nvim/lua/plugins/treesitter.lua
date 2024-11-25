@@ -36,6 +36,7 @@ return {
           -- "ruby",
           "bash",
           "dockerfile",
+          "css",
           "gitignore",
           "hcl",
           "html",

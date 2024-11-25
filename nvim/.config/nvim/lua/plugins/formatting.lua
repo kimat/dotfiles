@@ -27,6 +27,7 @@ return {
             end,
           },
           markdown = require("formatter.filetypes.markdown").prettier,
+          css = require("formatter.filetypes.css").prettier,
           python = require("formatter.filetypes.python").ruff,
           nix = require("formatter.filetypes.nix").nixfmt,
           javascript = require("formatter.filetypes.javascript").prettier,
