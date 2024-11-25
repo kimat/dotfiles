@@ -34,7 +34,7 @@ Map("n", "<leader>c", ':let @+=expand("%:.").":".line(".")<CR>')
 Map("n", "<leader>C", ':let @+=expand("%:.")<CR>')
 
 -- I need a faster way to insert a break point
-Map("n", ",b", "obinding.pry<ESC>^")
+Map("n", ",b", "odebugger<ESC>^")
 
 -- gx should open any link under the cursor
 Map(
