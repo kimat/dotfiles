@@ -6,7 +6,6 @@ return {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
       "RRethy/nvim-treesitter-endwise",
-      "windwp/nvim-ts-autotag",
       "JoosepAlviste/nvim-ts-context-commentstring",
     },
     build = ":TSUpdate",
@@ -19,9 +18,6 @@ return {
       require("nvim-treesitter.configs").setup {
         -- context_commentstring = { enable = true, enable_autocmd = false }, -- https://github.com/JoosepAlviste/nvim-ts-context-commentstring
         endwise = { enable = true }, -- https://github.com/RRethy/nvim-treesitter-endwise
-        autotag = { -- https://github.com/windwp/nvim-ts-autotag
-          enable = true,
-        },
         -- textobjects = {enable = true},
         -- rainbow = { enable = true },
         indent = { enable = true, disable = {} },
