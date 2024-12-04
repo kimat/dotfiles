@@ -79,8 +79,8 @@ bind main H !git reset --hard %(commit)         # reset hard
 bind main <F4> !git difftool -d %(commit)^!
 
 # Yank Commit numbers
-bind main y !@bash -c "echo -n `echo %(commit) | cut -c 1-7` | xclip -selection c" # copy (yank) commid hash to clipboard (truncated to 7 chars)
-bind main Y !@bash -c "echo -n %(commit) | xclip" # copy (yank) commid hash to clipboard
+bind main y !@bash -c "echo -n `echo %(commit) | cut -c 1-7` | wl-copy" # copy (yank) commid hash to clipboard (truncated to 7 chars)
+bind main Y !@bash -c "echo -n %(commit) | wl-copy" # copy (yank) commid hash to clipboard
 
 # Disable some defaults
 bind main H none
