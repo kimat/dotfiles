@@ -63,7 +63,7 @@ floating_modifier $mod
 
 # bindings to start applications{{{
 # start a terminal
-bindsym $mod+Return exec wezterm
+bindsym $mod+Return exec $TERMINAL
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec rofi -show run -matching fuzzy
@@ -239,7 +239,7 @@ workspace_layout tabbed
 floating_maximum_size -1 x -1
 
 # autostart apps {{{
-exec i3-sensible-terminal
+exec $TERMINAL
 exec --no-startup-id daemonize $HOME/my/scripts/bin/last-i3-focus.py
 exec DNS_SERVER=$(cat /etc/resolv.conf | grep nameserver | head -n 1 | sed 's/.* //g') ; watch -n 0.5 -g "ping -W 0.5 -c 1 $DNS_SERVER | grep '64 bytes from'" && sleep 2 && firefox
 
