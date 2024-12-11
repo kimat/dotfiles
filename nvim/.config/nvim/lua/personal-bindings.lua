@@ -137,3 +137,19 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 -- Trouble nvim
 Map("n", "<leader>x", "<cmd>Trouble diagnostics toggle<cr>")
+
+-- General mapping for all files
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = "*", -- Applies to all file types
+  callback = function()
+    Map("n", ",b", "odebugger<ESC>^")
+  end,
+})
+
+-- Specific mapping for ERB files
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "eruby", -- FileType for ERB files
+  callback = function()
+    Map("n", ",b", "o<% debugger %><ESC>^")
+  end,
+})
