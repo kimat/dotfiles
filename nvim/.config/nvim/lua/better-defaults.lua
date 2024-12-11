@@ -61,3 +61,11 @@ vim.cmd "set nowrap"
 -- just save more often
 vim.o.swapfile = false
 vim.bo.swapfile = false
+
+-- help pages to open in full height instead of half screen
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "help",
+  callback = function()
+    vim.cmd "wincmd _"
+  end,
+})
