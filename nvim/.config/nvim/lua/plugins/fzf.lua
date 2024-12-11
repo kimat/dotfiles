@@ -22,16 +22,28 @@ return {
       Map("n", "mm", "<Cmd>lua require('fzf-lua').files({ cwd = '~/my' })<CR>")
       Map("n", "ga", "<Cmd>FzfLua lsp_code_actions<CR>")
 
+      -- so :h<enter> shows a fzf menu to open a man page
+      vim.cmd.cnoreabbrev(
+        "<expr> h",
+        'getcmdtype() == ":" && getcmdline() == "h" ? "H" : "h"'
+      )
+      vim.api.nvim_create_user_command("H", function()
+        require("fzf-lua").helptags {
+          winopts = { preview = { layout = "horizontal" } },
+        }
+      end, { nargs = "?" })
+
       require("fzf-lua").setup {
-        -- default_previewer = "cat",
-        files = { fzf_ansi = "", file_icons = false, git_icons = false },
-        preview_layout = "vertical",
         winopts = {
+          preview = {
+            layout = "vertical",
+          },
           height = 0.95,
           border = "none",
-          preview_border = "rounded",
         },
+        files = { file_icons = false, git_icons = false },
 
+        -- default_previewer = "cat",
         -- lsp = {
         --   code_actions = {
         --     previewer = "codeaction_native",
