@@ -153,3 +153,21 @@ vim.api.nvim_create_autocmd("FileType", {
     Map("n", ",b", "o<% debugger %><ESC>^")
   end,
 })
+
+-- Fzf
+Map("n", "mo", "<Cmd>FzfLua files<CR>")
+Map("n", "ml", "<Cmd>FzfLua buffers<CR>")
+Map("n", "mt", "<Cmd>lua require('fzf-lua').files({ cwd = '~/my/tips' })<CR>")
+Map(
+  "n",
+  "mc",
+  "<Cmd>lua require('fzf-lua').files({ cmd = 'cat ~/.config/marks/configs' })<CR>"
+)
+Map("n", "mm", "<Cmd>lua require('fzf-lua').files({ cwd = '~/my' })<CR>")
+Map("n", "ga", "<Cmd>FzfLua lsp_code_actions<CR>")
+
+-- so :h<enter> or :h<space> shows a fzf menu to open a help page
+vim.cmd.cnoreabbrev(
+  "<expr> h",
+  'getcmdtype() == ":" && getcmdline() == "h" ? "H<cr>" : "h"'
+)
