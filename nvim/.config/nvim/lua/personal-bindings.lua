@@ -171,3 +171,28 @@ vim.cmd.cnoreabbrev(
   "<expr> h",
   'getcmdtype() == ":" && getcmdline() == "h" ? "H<cr>" : "h"'
 )
+
+local function switch_project()
+  require("fzf-lua").fzf_exec(
+    "cat ~/my/private-dotfiles/zsh/.config/marks/folders",
+    {
+      actions = {
+        ["default"] = function(selected)
+          -- local dir = vim.fn.expand(selected[1])
+          -- vim.cmd("cd " .. vim.fn.fnameescape(dir))
+          vim.cmd("cd " .. vim.fn.fnameescape(selected[1]))
+          require("fzf-lua").files()
+        end,
+      },
+    }
+  )
+end
+
+-- Recommended: Add a keymapping in your Neovim config
+-- For example, <leader>pd for "project directory"
+vim.keymap.set("n", "mO", switch_project, {
+  noremap = true,
+  silent = true,
+  desc = "Switch to Project Directory",
+})
+
