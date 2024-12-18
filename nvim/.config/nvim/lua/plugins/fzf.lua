@@ -42,28 +42,6 @@ return {
           border = "none",
         },
         files = { file_icons = false, git_icons = false },
-
-        -- default_previewer = "cat",
-        -- lsp = {
-        --   code_actions = {
-        --     previewer = "codeaction_native",
-        --     preview_pager = "delta --side-by-side --width=$FZF_PREVIEW_COLUMNS",
-        --   },
-        -- },
-        -- TODO bat theme not working because bright?
-        -- bat = {
-        --   cmd    = "bat",
-        --   args   = "--style=numbers,changes --color always --theme ansi",
-        --   theme  = 'ansi', -- bat preview theme (bat --list-themes)
-        --   config = nil,            -- nil uses $BAT_CONFIG_PATH
-        -- },
-        -- fzf_binds = { -- fzf '--bind=' options
-        --   'f2:toggle-preview', 'f3:toggle-preview-wrap',
-        --   'shift-down:preview-page-down', 'shift-up:preview-page-up',
-        --   'ctrl-a:beginning-of-line', 'ctrl-d:abort',
-        --   'ctrl-u:unix-line-discard', 'ctrl-f:page-down', 'ctrl-b:page-up',
-        --   'ctrl-a:toggle-all', 'ctrl-l:clear-screen'
-        -- }
       }
     end,
   },
