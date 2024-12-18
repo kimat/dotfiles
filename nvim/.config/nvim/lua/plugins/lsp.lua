@@ -66,38 +66,16 @@ return {
 
       lspconfig.ruby_lsp.setup {
         filetypes = { "ruby", "eruby" },
-        init_options = { formatter = { nil } },
-        -- cmd = { "docker", "compose", "exec", "-T", "app", "ruby-lsp" },
         single_file_support = true,
-        -- init_options = {
-        --   enabledFeatures = {
-        --     "signatureHelps",
-        --     -- "documentHighlights",
-        --     -- "documentSymbols",
-        --     -- "foldingRanges",
-        --     -- "selectionRanges",
-        --     -- "formatting",
-        --     -- "codeActions",
-        --   },
-        -- },
-        settings = {},
+        settings = {
+          diagnostics = {
+            enabled = true, -- diagnostics (uses RuboCop by default)
+          },
+          format = {
+            enable = false, -- formatting (via RuboCop or standardrb)
+          },
+        },
       }
-
-      -- lspconfig.typos_lsp.setup {
-      --   filetypes = { "*" },
-      --   -- Logging level of the language server. Logs appear in :LspLog. Defaults to error.
-      --   cmd_env = { RUST_LOG = "error" },
-      --   cmd = { "typos-lsp" },
-      --   init_options = {
-      --     -- Custom config. Used together with a config file found in the workspace or its parents,
-      --     -- taking precedence for settings declared in both.
-      --     -- Equivalent to the typos `--config` cli argument.
-      --     -- config = '~/code/typos-lsp/crates/typos-lsp/tests/typos.toml',
-      --     -- How typos are rendered in the editor, can be one of an Error, Warning, Info or Hint.
-      --     -- Defaults to error.
-      --     diagnosticSeverity = "Error",
-      --   },
-      -- }
     end,
   },
   -- { -- show as you type, lsp signature_help
@@ -108,5 +86,4 @@ return {
   --     require("lsp_signature").setup(opts)
   --   end,
   -- },
-  -- { "VonHeikemen/lsp-zero.nvim", branch = "v4.x" },
 }
