@@ -184,6 +184,9 @@ local function switch_project()
           require("fzf-lua").files()
         end,
       },
+      fzf_opts = {
+        ["--no-sort"] = "",
+      },
     }
   )
 end
@@ -195,4 +198,3 @@ vim.keymap.set("n", "mO", switch_project, {
   silent = true,
   desc = "Switch to Project Directory",
 })
-
