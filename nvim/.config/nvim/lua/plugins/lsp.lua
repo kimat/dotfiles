@@ -60,6 +60,8 @@ return {
         },
       }
 
+      lspconfig.nixd.setup {}
+
       lspconfig.bashls.setup {}
 
       lspconfig.yamlls.setup {}
