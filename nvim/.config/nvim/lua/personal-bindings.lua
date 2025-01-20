@@ -85,7 +85,7 @@ Map("v", "gx", ':luado os.execute("$BROWSER " .. line:match("http%S+"))<CR>')
 -- search
 Map("n", "gr", ":grep <C-R><C-W>")
 Map("n", "<C-n>", ":cn<CR>")
-vim.opt.grepprg = "rg --no-heading --vimgrep --hidden -g '!.git'"
+vim.opt.grepprg = "rg --no-heading --vimgrep --hidden -g '!.git' -L"
 vim.opt.grepformat = "%f:%l:%c:%m"
 vim.opt.path = "$PWD/**"
 
