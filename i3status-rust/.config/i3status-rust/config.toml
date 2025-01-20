@@ -24,7 +24,7 @@ if_command = '[ "$(playerctl status)" == "Playing" -o "$(playerctl status)" == "
 
 [[block]]
 block = "sound"
-format = "$icon{$volume| 0%}"
+format = "$icon {$volume| 0%}"
 driver = "auto"
 [[block.click]]
 button = "left"
@@ -61,7 +61,7 @@ info_type = "available"
 interval = 20
 warning = 20.0
 alert = 10.0
-format = " $available"
+format = "$available"
 
 [[block]]
 block = "custom"
@@ -73,13 +73,13 @@ format = " $text%"
 [[block]]
 block = "cpu"
 interval = 1
-format = " {$utilization}"
+format = "C{$utilization}"
 
 [[block]]
 block = "amd_gpu"
 if_command = "lspci -v | grep 'AMD/ATI' >/dev/null"
 interval = 1
-format = "$utilization gpu"
+format = "G$utilization"
 format_alt = "GPU MEM: $vram_used_percents ($vram_used/$vram_total) "
 
 # cmd = "pactl \"$(pactl info | grep 'Default Sink:' | sed 's/.*: //')\"  set-sink-volume 0%"
