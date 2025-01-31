@@ -1,3 +1,4 @@
+# 
 icons_format = "{icon}"
 
 [theme]
@@ -47,7 +48,7 @@ cmd = "toggle-keyboard"
 [[block]]
 block = "net"
 interval = 1
-format = " $icon {$ssid}"
+format = " $icon {$ssid}|$icon Wired"
 format_alt = " $icon {$signal_strength $ssid $frequency via $device|Wired}"
 
 [[block]]
