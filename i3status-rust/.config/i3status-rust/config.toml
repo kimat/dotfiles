@@ -28,7 +28,10 @@ format = "$icon {$volume| 0%}"
 driver = "auto"
 [[block.click]]
 button = "left"
-cmd = "xdotool key XF86AudioMute"
+cmd = "pactl set-sink-volume @DEFAULT_SINK@ 0%"
+[[block.click]]
+button = "right"
+cmd = "pactl set-sink-volume @DEFAULT_SINK@ 100%"
 
 [[block]]
 block = "keyboard_layout"
