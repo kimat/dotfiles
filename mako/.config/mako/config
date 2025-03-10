@@ -1,2 +1,7 @@
 height=300
-width=600
+width=300
+anchor=bottom-right
+margin=0,0,20
+background-color=#000000
+border-color=#000000
+default-timeout=2000
