@@ -17,11 +17,14 @@ volume_muted = "\uf026"
 # cpu =""
 # sound =""
 
-[[block]]
-block = "music"
-format = "$icon {$artist|} - {$title|} {     $prev   $play   $next |}"
-format_alt = "                                 \uf001                                 "
-if_command = '[ "$(playerctl status)" == "Playing" -o "$(playerctl status)" == "Paused" ]'
+# [[block]]
+# block = "notify"
+
+# [[block]]
+# block = "music"
+# format = "$icon {$artist|} - {$title|} {     $prev   $play   $next |}"
+# format_alt = "                                 \uf001                                 "
+# if_command = '[ "$(playerctl status)" == "Playing" -o "$(playerctl status)" == "Paused" ]'
 
 [[block]]
 block = "sound"
