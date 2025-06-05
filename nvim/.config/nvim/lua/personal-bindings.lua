@@ -155,22 +155,21 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Fzf
-Map("n", "mo", "<Cmd>FzfLua files<CR>")
-Map("n", "ml", "<Cmd>FzfLua buffers<CR>")
-Map("n", "mt", "<Cmd>lua require('fzf-lua').files({ cwd = '~/my/tips' })<CR>")
-Map(
-  "n",
-  "mc",
-  "<Cmd>lua require('fzf-lua').files({ cmd = 'cat ~/.config/marks/configs' })<CR>"
-)
-Map("n", "mm", "<Cmd>lua require('fzf-lua').files({ cwd = '~/my' })<CR>")
-Map("n", "ga", "<Cmd>FzfLua lsp_code_actions<CR>")
-
--- so :h<enter> or :h<space> shows a fzf menu to open a help page
-vim.cmd.cnoreabbrev(
-  "<expr> h",
-  'getcmdtype() == ":" && getcmdline() == "h" ? "H<cr>" : "h"'
-)
+local function open_from_bookmark(bookmark)
+  require("fzf-lua").fzf_exec(
+    "cat " .. vim.fn.fnameescape(bookmark) .. "| grep -v '^$'",
+    {
+      actions = {
+        ["default"] = function(selected)
+          vim.cmd("edit " .. vim.fn.fnameescape(selected[1]))
+        end,
+      },
+      fzf_opts = {
+        ["--no-sort"] = "",
+      },
+    }
+  )
+end
 
 local function switch_project()
   require("fzf-lua").fzf_exec(
@@ -190,9 +189,24 @@ local function switch_project()
     }
   )
 end
+Map("n", "mo", "<Cmd>FzfLua files<CR>")
+Map("n", "ml", "<Cmd>FzfLua buffers<CR>")
+vim.keymap.set("n", "mc", function()
+  open_from_bookmark "~/.config/marks/configs"
+end)
+-- vim.keymap.set("n", "md", function()
+--   require("fzf-lua").files { cmd = "cat " .. "~/.config/marks/configs" }
+-- end)
+Map("n", "mt", "<Cmd>lua require('fzf-lua').files({ cwd = '~/my/tips' })<CR>")
+Map("n", "mm", "<Cmd>lua require('fzf-lua').files({ cwd = '~/my' })<CR>")
+Map("n", "ga", "<Cmd>FzfLua lsp_code_actions<CR>")
 
--- Recommended: Add a keymapping in your Neovim config
--- For example, <leader>pd for "project directory"
+-- so :h<enter> or :h<space> shows a fzf menu to open a help page
+vim.cmd.cnoreabbrev(
+  "<expr> h",
+  'getcmdtype() == ":" && getcmdline() == "h" ? "H<cr>" : "h"'
+)
+
 vim.keymap.set("n", "mO", switch_project, {
   noremap = true,
   silent = true,
