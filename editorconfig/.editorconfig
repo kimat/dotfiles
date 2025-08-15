@@ -2,7 +2,11 @@
 root = true
 
 # Unix-style newlines with a newline ending every file
-[*]
+[*.sh]
+indent_style = space
+indent_size = 2
+
+[shell]
 indent_style = space
 indent_size = 2
 
