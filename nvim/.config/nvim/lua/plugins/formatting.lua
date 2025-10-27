@@ -17,6 +17,7 @@ return {
         -- https://github.com/mhartington/formatter.nvim/tree/master/lua/formatter/filetypes
         filetype = {
           sh = require("formatter.filetypes.sh").shfmt,
+          go = require("formatter.filetypes.go").gofmt,
           eruby = require("formatter.filetypes.eruby").erbformatter,
           -- ruby = require("formatter.filetypes.ruby").standardrb,
           ruby = require("formatter.filetypes.ruby").rubocop,

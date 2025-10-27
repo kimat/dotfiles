@@ -29,6 +29,8 @@ return {
       --   },
       -- }
 
+      lspconfig.gopls.setup {}
+
       lspconfig.typos_lsp.setup {
         filetypes = { "*" },
       }
