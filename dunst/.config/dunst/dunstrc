@@ -1,0 +1,36 @@
+# See dunst(5) for all configuration options
+
+[global]
+    ### Display ###
+
+    # Which monitor should the notifications be displayed on.
+    # monitor = 0
+
+    # Display notification on focused monitor.  Possible modes are:
+    #   mouse: follow mouse pointer
+    #   keyboard: follow window with keyboard focus
+    #   none: don't follow anything
+    #
+    # "keyboard" needs a window manager that exports the
+    # _NET_ACTIVE_WINDOW property.
+    # This should be the case for almost all modern window managers.
+    #
+    # If this option is set to mouse or keyboard, the monitor option
+    # will be ignored.
+    follow = none
+
+    ### Geometry ###
+
+    # The width of the window, excluding the frame.
+    # dynamic width from 0 to 300
+    width = (0, 800)
+    # constant width of 300
+    # width = 300
+
+    # The height of a single notification, excluding the frame.
+    # dynamic height from 0 to 300
+    height = (0, 300)
+    # constant height of 300
+    # height = 300
+    # NOTE: Dunst from version 1.11 and older don't support dynamic height
+    #       and the given value is treated as the maximum height
