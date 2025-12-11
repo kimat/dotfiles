@@ -104,7 +104,7 @@ interval = 5
 format = "$timestamp.datetime(f:'%a %d/%m %R')"
 [[block.click]]
 button = "left"
-cmd = "notify-send \"$(cal -n 3)\""
+cmd = "notify-send -t 60000 \"$(cal -n 1)\""
 
 # [[block]]
 # block = "custom"
