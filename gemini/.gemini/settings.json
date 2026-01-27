@@ -1,0 +1,24 @@
+{
+  "ui": {
+    "hideBanner": true,
+    "hideTips": true
+  },
+  "general": {
+    "previewFeatures": true,
+    "model": {
+      "name": "gemini-3-pro-preview"
+    },
+    "vimMode": true
+  },
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
+    }
+  },
+  "model": {
+    "name": "gemini-3-pro-preview"
+  },
+  "telemetry": {
+    "enabled": false
+  }
+}
