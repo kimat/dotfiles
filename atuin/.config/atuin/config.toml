@@ -41,7 +41,7 @@
 # search_mode = "fuzzy"
 
 ## which filter mode to use by default
-## possible values: "global", "host", "session", "directory", "workspace"
+## possible values: "global", "host", "session", "session-preload", "directory", "workspace"
 ## consider using search.filters to customize the enablement and order of filter modes
 # filter_mode = "global"
 
@@ -65,15 +65,19 @@
 
 ## which style to use
 ## possible values: auto, full, compact
-style = "compact"
+# style = "auto"
 
 ## the maximum number of lines the interface should take up
 ## set it to 0 to always go full screen
 # inline_height = 0
-inline_height = 5
+
+## the maximum number of lines the interface should take up
+## when atuin is invoked from a shell up-key binding
+## the accepted values are identical to those of "inline_height"
+# inline_height_shell_up_key_binding = 0
 
 ## Invert the UI - put the search bar at the top , Default to `false`
-invert = false
+invert = true
 
 ## enable or disable showing a preview of the selected command
 ## useful when the command is longer than the terminal width and is cut off
@@ -96,9 +100,12 @@ invert = false
 ## alt-0 .. alt-9
 # ctrl_n_shortcuts = false
 
+## Show numeric shortcuts (1..9) beside list items in the TUI
+## set to false to hide the moving numbers if you find them distracting
+# show_numeric_shortcuts = true
+
 ## default history list format - can also be specified with the --format arg
 # history_format = "{time}\t{command}\t{duration}"
-history_format = "{command}"
 
 ## prevent commands matching any of these regexes from being written to history.
 ## Note that these regular expressions are unanchored, i.e. if they don't start
@@ -127,7 +134,7 @@ history_format = "{command}"
 ## Configure whether or not to show the help row, which includes the current Atuin
 ## version (and whether an update is available), a keymap hint, and the total
 ## amount of commands in your history.
-show_help = false
+# show_help = true
 
 ## Configure whether or not to show tabs for search and inspect
 # show_tabs = true
@@ -150,6 +157,9 @@ show_help = false
 ## Defaults to true. If enabled, upon hitting enter Atuin will immediately execute the command. Press tab to return to the shell and edit.
 # This applies for new installs. Old installs will keep the old behaviour unless configured otherwise.
 enter_accept = true
+
+## Defaults to false. If enabled, when triggered after &&, || or |, Atuin will complete commands to chain rather than replace the current line.
+# command_chaining = false
 
 ## Defaults to "emacs".  This specifies the keymap on the startup of `atuin
 ## search`.  If this is set to "auto", the startup keymap mode in the Atuin
@@ -182,6 +192,7 @@ enter_accept = true
 #   "composer",
 #   "dnf",
 #   "docker",
+#   "dotnet",
 #   "git",
 #   "go",
 #   "ip",
@@ -216,6 +227,10 @@ enter_accept = true
 # exit_past_line_start = true
 # Defaults to true. The right arrow key performs the same functionality as Tab and copies the selected line to the command line to be modified.
 # accept_past_line_end = true
+# Defaults to false. The left arrow key performs the same functionality as Tab and copies the selected line to the command line to be modified.
+# accept_past_line_start = false
+# Defaults to false. The backspace key performs the same functionality as Tab and copies the selected line to the command line to be modified when at the start of the line.
+# accept_with_backspace = false
 
 [sync]
 # Enable sync v2 by default
@@ -271,4 +286,4 @@ records = true
 ## The list of enabled filter modes, in order of priority.
 ## The "workspace" mode is skipped when not in a workspace or workspaces = false.
 ## Default filter mode can be overridden with the filter_mode setting.
-# filters = [ "global", "host", "session", "workspace", "directory" ]
+filters = ["global"]
