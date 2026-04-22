@@ -9,7 +9,7 @@ return {
       Map(
         "n",
         "ej",
-        ':let @t=expand("%:.").":".line(".")<CR>:SlimuxShellRun spring rspec <c-r>t<CR>'
+        ':let @t=expand("%:.").":".line(".")<CR>:SlimuxShellRun rails test <c-r>t<CR>'
       )
       Map(
         "n",

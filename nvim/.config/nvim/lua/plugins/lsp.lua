@@ -2,52 +2,50 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      { "hrsh7th/cmp-nvim-lsp" },
-      {
-        "VonHeikemen/lsp-zero.nvim",
-        branch = "v4.x",
-        lazy = true,
-        config = false,
-      },
+      "hrsh7th/cmp-nvim-lsp",
     },
     opts = {
       autoformat = false,
     },
     config = function()
-      -- vim.lsp.set_log_level "info"
-      local lspconfig = require "lspconfig"
-      -- set some defaults for each following lspconfig.SERVER_NAME.setup call
-      require("lsp-zero").extend_lspconfig {
-        -- sign_text = true,
-        capabilities = require("cmp_nvim_lsp").default_capabilities(),
-      }
+      local lspconfig = vim.lsp.config
 
-      -- lspconfig.vale_ls.setup {
-      --   init_options = {
-      --     installVale = false,
-      --     syncOnStartup = true,
-      --   },
-      -- }
+      -- Replace lsp-zero's extend_lspconfig by modifying the default config
+      -- This applies the cmp capabilities to every server you setup below
+      -- local lspconfig_defaults = lspconfig.util.default_config
+      -- lspconfig_defaults.capabilities = vim.tbl_deep_extend(
+      --   "force",
+      --   lspconfig_defaults.capabilities,
+      --   require("cmp_nvim_lsp").default_capabilities()
+      -- )-- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      -- An example for configuring `clangd` LSP to use nvim-cmp as a completion engine
+      vim.lsp.config("clangd", {
+        capabilities = capabilities,
+      })
 
-      lspconfig.gopls.setup {}
-
-      lspconfig.typos_lsp.setup {
+      vim.lsp.config("gopls", {})
+      vim.lsp.config("typos_lsp", {
         filetypes = { "*" },
-      }
-
-      lspconfig.lua_ls.setup {
+      })
+      vim.lsp.config("lua_ls", {
         on_init = function(client)
-          local path = client.workspace_folders[1].name
+          -- Added a safe fallback in case workspace_folders is nil
+          local path = (
+            client.workspace_folders and client.workspace_folders[1].name
+          ) or ""
+
+          -- Modernized: vim.loop is deprecated in favor of vim.uv in Neovim 0.10+
           if
-            vim.loop.fs_stat(path .. "/.luarc.json")
-            or vim.loop.fs_stat(path .. "/.luarc.jsonc")
+            vim.uv.vim.uv.fs_stat(path .. "/.luarc.json")
+            or vim.uv.fs_stat(path .. "/.luarc.jsonc")
           then
             return
           end
+
           client.config.settings.Lua =
             vim.tbl_deep_extend("force", client.config.settings.Lua, {
               runtime = { version = "LuaJIT" },
-              -- Make the server aware of Neovim runtime files
               workspace = {
                 checkThirdParty = false,
                 library = {
@@ -60,34 +58,42 @@ return {
         settings = {
           Lua = {},
         },
+      })
+      --
+      vim.lsp.config("nixd", {})
+      vim.lsp.config("bashls", {})
+      vim.lsp.config.yamlls = {
+        on_attach = attached,
+        capabilities = capabilities,
+        settings = {
+          yaml = {
+            format = { enable = true },
+            schemaStore = {
+              enable = true,
+            },
+            schemas = {
+              ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+              ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
+              ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
+              ["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] = "*gitlab-ci*.{yml,yaml}",
+              ["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json"] = "*api*.{yml,yaml}",
+            },
+          },
+        },
       }
-
-      lspconfig.nixd.setup {}
-
-      lspconfig.bashls.setup {}
-
-      lspconfig.yamlls.setup {}
-
-      lspconfig.ruby_lsp.setup {
+      vim.lsp.enable "yamlls"
+      vim.lsp.config("ruby_lsp", {
         filetypes = { "ruby", "eruby" },
         single_file_support = true,
         settings = {
           diagnostics = {
-            enabled = true, -- diagnostics (uses RuboCop by default)
+            enabled = true,
           },
           format = {
-            enable = false, -- formatting (via RuboCop or standardrb)
+            enable = false,
           },
         },
-      }
+      })
     end,
   },
-  -- { -- show as you type, lsp signature_help
-  --   "ray-x/lsp_signature.nvim",
-  --   -- event = "VeryLazy",
-  --   opts = {},
-  --   config = function(_, opts)
-  --     require("lsp_signature").setup(opts)
-  --   end,
-  -- },
 }
