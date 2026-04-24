@@ -15,7 +15,7 @@ return {
       -- require'nvim-treesitter.install'.compilers = {'gcc'}
       vim.wo.foldmethod = "expr"
       vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
-      require("nvim-treesitter.configs").setup {
+      require("nvim-treesitter").setup {
         -- context_commentstring = { enable = true, enable_autocmd = false }, -- https://github.com/JoosepAlviste/nvim-ts-context-commentstring
         endwise = { enable = true }, -- https://github.com/RRethy/nvim-treesitter-endwise
         -- textobjects = {enable = true},
@@ -56,7 +56,7 @@ return {
     "nvim-treesitter/nvim-treesitter-textobjects",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
-      require("nvim-treesitter.configs").setup {
+      require("nvim-treesitter-textobjects").setup {
         textobjects = {
           move = {
             enable = true,
