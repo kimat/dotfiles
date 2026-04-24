@@ -4,27 +4,16 @@ return {
     dependencies = {
       { "hrsh7th/cmp-nvim-lsp" },
     },
-    opts = {
-      autoformat = false,
-    },
     config = function()
       -- vim.lsp.set_log_level "info"
-      local lspconfig = require "lspconfig"
 
-      -- lspconfig.vale_ls.setup {
-      --   init_options = {
-      --     installVale = false,
-      --     syncOnStartup = true,
-      --   },
-      -- }
+      vim.lsp.config("gopls", {})
 
-      lspconfig.gopls.setup {}
-
-      lspconfig.typos_lsp.setup {
+      vim.lsp.config("typos_lsp", {
         filetypes = { "*" },
-      }
+      })
 
-      lspconfig.lua_ls.setup {
+      vim.lsp.config("lua_ls", {
         on_init = function(client)
           local path = client.workspace_folders[1].name
           if
@@ -36,7 +25,6 @@ return {
           client.config.settings.Lua =
             vim.tbl_deep_extend("force", client.config.settings.Lua, {
               runtime = { version = "LuaJIT" },
-              -- Make the server aware of Neovim runtime files
               workspace = {
                 checkThirdParty = false,
                 library = {
@@ -49,26 +37,36 @@ return {
         settings = {
           Lua = {},
         },
-      }
+      })
 
-      lspconfig.nixd.setup {}
+      vim.lsp.config("nixd", {})
 
-      lspconfig.bashls.setup {}
+      vim.lsp.config("bashls", {})
 
-      lspconfig.yamlls.setup {}
+      vim.lsp.config("yamlls", {})
 
-      lspconfig.ruby_lsp.setup {
+      vim.lsp.config("ruby_lsp", {
         filetypes = { "ruby", "eruby" },
         single_file_support = true,
         settings = {
           diagnostics = {
-            enabled = true, -- diagnostics (uses RuboCop by default)
+            enabled = true,
           },
           format = {
-            enable = false, -- formatting (via RuboCop or standardrb)
+            enable = false,
           },
         },
-      }
+      })
+
+      vim.lsp.enable({
+        "gopls",
+        "typos_lsp",
+        "lua_ls",
+        "nixd",
+        "bashls",
+        "yamlls",
+        "ruby_lsp",
+      })
     end,
   },
   -- { -- show as you type, lsp signature_help
