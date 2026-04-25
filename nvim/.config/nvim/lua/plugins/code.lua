@@ -1,35 +1,11 @@
-return {
-  {
-    -- ⚠️ viml based plugin
-    "tpope/vim-rails",
-  },
-  {
-    -- ⚠️ viml based plugin
-    "bogado/file-line",
-  },
-  {
-    "gbprod/yanky.nvim",
-    opts = {},
-  },
-  {
-    -- ⚠️ viml based plugin
-    "tpope/vim-fugitive",
-  },
-  {
-    -- ⚠️ viml based plugin
-    "editorconfig/editorconfig-vim",
-  },
-  -- reformat text
-  {
-    "Wansmer/treesj",
-    keys = { "<space>m", "<space>j", "<space>s" },
-    dependencies = { "nvim-treesitter/nvim-treesitter" }, -- if you install parsers with `nvim-treesitter`
-    config = function()
-      require("treesj").setup {
-        use_default_keymaps = true,
-      }
-    end,
-  },
-  { "godlygeek/tabular" },
-  { "cuducos/yaml.nvim" },
+vim.pack.add {
+  "https://github.com/tpope/vim-rails",
+  "https://github.com/bogado/file-line",
+  "https://github.com/gbprod/yanky.nvim",
+  "https://github.com/tpope/vim-fugitive",
+  "https://github.com/editorconfig/editorconfig-vim",
+  "https://github.com/godlygeek/tabular",
+  "https://github.com/cuducos/yaml.nvim",
 }
+
+require("yanky").setup {}
