@@ -1,34 +1,30 @@
-vim.api.nvim_create_augroup("__formatter__", { clear = true })
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-  group = "__formatter__",
-  callback = function()
+vim.pack.add { "https://github.com/stevearc/conform.nvim" }
+
+-- to disable auto formatting: `:ConformDisable`
+require("conform").setup {
+  formatters = {
+    jq = { args = { "--indent", "2" } },
+  },
+  -- https://github.com/stevearc/conform.nvim#formatters
+  formatters_by_ft = {
+    sh = { "shfmt" },
+    go = { "gofmt" },
+    eruby = { "erb_format" },
+    ruby = { "rubocop" },
+    lua = { "stylua" },
+    terraform = { "terraform_fmt" },
+    markdown = { "prettier" },
+    css = { "prettier" },
+    python = { "ruff_format" },
+    nix = { "nixfmt" },
+    javascript = { "prettier" },
+    json = { "jq" },
+    yaml = { "prettier" },
+  },
+  format_on_save = function(bufnr)
     if string.match(vim.fn.getcwd(), "/home.*/dev/nix/.*") then
       return
     end
-    vim.cmd "FormatWrite"
+    return { timeout_ms = 500, lsp_fallback = true }
   end,
-})
-
-vim.pack.add { "https://github.com/mhartington/formatter.nvim" }
-
--- to disable auto formatting: `:set ei=BufWritePost`
-require("formatter").setup {
-  -- https://github.com/mhartington/formatter.nvim/tree/master/lua/formatter/filetypes
-  filetype = {
-    sh = require("formatter.filetypes.sh").shfmt,
-    go = require("formatter.filetypes.go").gofmt,
-    eruby = require("formatter.filetypes.eruby").erbformatter,
-    ruby = require("formatter.filetypes.ruby").rubocop,
-    lua = require("formatter.filetypes.lua").stylua,
-    terraform = {
-      function()
-        return { exe = "terraform", stdin = true, args = { "fmt", "-" } }
-      end,
-    },
-    markdown = require("formatter.filetypes.markdown").prettier,
-    css = require("formatter.filetypes.css").prettier,
-    python = require("formatter.filetypes.python").ruff,
-    nix = require("formatter.filetypes.nix").nixfmt,
-    javascript = require("formatter.filetypes.javascript").prettier,
-  },
 }
