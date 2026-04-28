@@ -104,6 +104,5 @@ require("nvim-ts-autotag").setup {
   -- },
 }
 
-require("treesj").setup {
-  vim.keymap.set("n", "es", require("treesj").toggle),
-}
+require("treesj").setup {}
+vim.keymap.set("n", "<localleader>s", require("treesj").toggle)

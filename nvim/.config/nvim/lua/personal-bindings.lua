@@ -89,7 +89,8 @@ vim.opt.grepprg = "rg --no-heading --vimgrep --hidden -g '!.git' -L"
 vim.opt.grepformat = "%f:%l:%c:%m"
 vim.opt.path = "$PWD/**"
 
--- Map("n", "es", "<Cmd>e ~/my/tips/stack.md<CR>")
+Map("n", "es", "<Cmd>e ~/my/tips/stack.md<CR>")
+Map("n", "eS", "<Cmd>e ~/my/tips/stackable.md<CR>")
 
 Map("n", "el", "<Cmd>e ~/my/tips/favorite/links<CR>")
 Map("n", "eg", "<Cmd>silent !firefox-send Home<CR>")
