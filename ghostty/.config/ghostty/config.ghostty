@@ -1,0 +1,51 @@
+fullscreen=true
+keybind = ctrl+shift+r=reload_config
+keybind = alt+shift+enter=toggle_fullscreen
+
+# Font
+font-family = monospace
+font-size = 11
+
+# Colors
+# background-opacity = 0.5
+foreground = #444444
+background = #ffffff
+
+# Cursor (optional, using foreground color)
+cursor-color = #444444
+
+# Normal/regular colors (palette 0-7)
+# black
+palette = 0=#444444
+# red
+palette = 1=#af0000
+# green
+palette = 2=#008700
+# yellow
+palette = 3=#af5f00
+# blue
+palette = 4=#005faf
+# magenta
+palette = 5=#870087
+# cyan
+palette = 6=#008787
+# white
+palette = 7=#ffffff
+
+# Bright colors (palette 8-15)
+# bright black
+palette = 8=#444444
+# bright red
+palette = 9=#af0000
+# bright green
+palette = 10=#008700
+# bright yellow
+palette = 11=#af5f00
+# bright blue
+palette = 12=#005faf
+# bright magenta
+palette = 13=#870087
+# bright cyan
+palette = 14=#008787
+# bright white
+palette = 15=#ffffff
