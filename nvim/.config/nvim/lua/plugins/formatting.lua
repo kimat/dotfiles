@@ -20,6 +20,7 @@ require("conform").setup {
     javascript = { "prettier" },
     json = { "jq" },
     yaml = { "prettier" },
+    xml = { "xmllint" },
   },
   format_on_save = function(bufnr)
     if string.match(vim.fn.getcwd(), "/home.*/dev/nix/.*") then

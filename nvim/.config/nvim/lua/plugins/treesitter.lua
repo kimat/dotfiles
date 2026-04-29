@@ -49,6 +49,7 @@ require("nvim-treesitter").setup {
     "markdown",
     "embedded_template",
     "hurl",
+    "xml",
   },
 }
 
