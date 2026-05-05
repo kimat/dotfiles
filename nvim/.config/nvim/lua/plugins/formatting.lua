@@ -4,6 +4,7 @@ vim.pack.add { "https://github.com/stevearc/conform.nvim" }
 require("conform").setup {
   formatters = {
     jq = { args = { "--indent", "2" } },
+    shfmt = { args = { "-i", "2" } },
   },
   -- https://github.com/stevearc/conform.nvim#formatters
   formatters_by_ft = {
