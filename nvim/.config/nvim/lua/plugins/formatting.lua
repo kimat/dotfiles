@@ -5,6 +5,9 @@ require("conform").setup {
   formatters = {
     jq = { args = { "--indent", "2" } },
     shfmt = { args = { "-i", "2" } },
+    just = {
+      args = { "--fmt", "--unstable", "-f", "$FILENAME" },
+    },
   },
   -- https://github.com/stevearc/conform.nvim#formatters
   formatters_by_ft = {
@@ -22,6 +25,7 @@ require("conform").setup {
     json = { "jq" },
     yaml = { "prettier" },
     xml = { "xmllint" },
+    just = { "just" },
   },
   format_on_save = function(bufnr)
     if string.match(vim.fn.getcwd(), "/home.*/dev/nix/.*") then
