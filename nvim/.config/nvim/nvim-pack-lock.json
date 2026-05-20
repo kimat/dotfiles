@@ -60,6 +60,10 @@
       "rev": "305aa90aeb8409b4bd2af1812a4b6e157ee93953",
       "src": "https://github.com/vijaymarupudi/nvim-fzf"
     },
+    "nvim-highlight-colors": {
+      "rev": "e4c7af0211866162d999ce0bdd6a029302e19139",
+      "src": "https://github.com/brenoprata10/nvim-highlight-colors"
+    },
     "nvim-lint": {
       "rev": "eab58b48eb11d7745c11c505e0f3057165902461",
       "src": "https://github.com/mfussenegger/nvim-lint"
