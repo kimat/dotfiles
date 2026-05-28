@@ -85,3 +85,6 @@ if vim.fn.has "wsl" == 1 then
     cache_enabled = 0,
   }
 end
+
+-- no splash screen
+vim.opt.shortmess:append "I"
