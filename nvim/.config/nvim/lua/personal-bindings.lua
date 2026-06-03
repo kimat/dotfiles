@@ -36,14 +36,6 @@ Map("n", "<leader>C", ':let @+=expand("%:.")<CR>')
 -- I need a faster way to insert a break point
 Map("n", ",b", "odebugger<ESC>^")
 
--- gx should open any link under the cursor
-Map(
-  "n",
-  "gx",
-  [[:silent execute '!$BROWSER ' . shellescape(expand('<cfile>'), 1)<CR>]],
-  opts
-)
-
 -- debug
 -- :lua put(an_array)
 function _G.put(...)
@@ -57,28 +49,19 @@ function _G.put(...)
   return ...
 end
 
-function _G.url_on_line()
-  local current_buffer = vim.api.nvim_get_current_buf()
-  local current_line_number = vim.fn.line "."
-  local current_line = vim.api.nvim_buf_get_lines(
-    current_buffer,
-    current_line_number - 1,
-    current_line_number,
-    1
-  )[1]
-  return current_line:match "(http%S+)%)+"
-  -- os.execute('$BROWSER ' .. url)
-end
-
 -- prefer vim.fn.system since # & % need to be prefixed by \
 function _G.safe_cmd(command)
   vim.cmd(command:gsub("([#%%])", "\\%1"))
 end
 
-function _G.browse(url)
-  vim.fn.system("$BROWSER " .. url)
+-- gx should open any link under the cursor
+function _G.url_on_line()
+  local url = vim.api.nvim_get_current_line():match "(http%S+)"
+  return url and (url:gsub("[)%]]+$", "")) -- strip trailing ) or ] left by markdown link syntax
 end
-
+function _G.browse(url)
+  return url and vim.fn.system("$BROWSER " .. vim.fn.shellescape(url))
+end
 Map("n", "gx", "<Cmd>lua browse(url_on_line())<CR>")
 Map("v", "gx", ':luado os.execute("$BROWSER " .. line:match("http%S+"))<CR>')
 
