@@ -20,7 +20,11 @@ vim.g.vim_markdown_folding_style_pythonic = 1
 vim.g.vim_markdown_override_foldtext = 0
 vim.g.vim_markdown_folding_level = 1
 
-vim.g.previm_open_cmd = "firefox"
+if vim.fn.has "wsl" == 1 then
+  vim.g.previm_open_cmd = "chromium"
+else
+  vim.g.previm_open_cmd = "firefox.exe"
+end
 vim.g.previm_plantuml_imageprefix = "http://localhost:1284/plantuml/img/"
 
 -- {
