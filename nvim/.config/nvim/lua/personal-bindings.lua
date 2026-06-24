@@ -32,6 +32,7 @@ Map("n", "zz", "ZZ")
 -- I need a way to copy the current filepath
 Map("n", "<leader>c", ':let @+=expand("%:.").":".line(".")<CR>')
 Map("n", "<leader>C", ':let @+=expand("%:.")<CR>')
+Map("n", "<leader>,", ':let @+=expand("%:p").":".line(".")<CR>')
 
 -- I need a faster way to insert a break point
 Map("n", ",b", "odebugger<ESC>^")
