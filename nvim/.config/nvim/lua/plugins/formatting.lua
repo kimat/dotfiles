@@ -3,7 +3,7 @@ vim.pack.add { "https://github.com/stevearc/conform.nvim" }
 -- to disable auto formatting: `:ConformDisable`
 require("conform").setup {
   formatters = {
-    jq = { args = { "--indent", "2" } },
+    jq = { args = { "-S", "--indent", "2" } },
     shfmt = { args = { "-i", "2" } },
     just = {
       args = { "--fmt", "--unstable", "-f", "$FILENAME" },
