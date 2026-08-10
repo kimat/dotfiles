@@ -76,6 +76,9 @@ command = 'brightnessctl -m | cut -d, -f4 | tr -d %'
 interval = 10
 format = " $text%"
 [[block.click]]
+button = "left"
+cmd = 'cur=$(brightnessctl -m | cut -d, -f4 | tr -d %); [ "$cur" -ne 100 ] && brightnessctl set 100% || brightnessctl set 5%'
+[[block.click]]
 button = "up"
 cmd = "brightnessctl set +5%"
 [[block.click]]
