@@ -80,7 +80,7 @@ button = "up"
 cmd = "brightnessctl set +5%"
 [[block.click]]
 button = "down"
-cmd = "brightnessctl set 5%-"
+cmd = 'cur=$(brightnessctl -m | cut -d, -f4 | tr -d %); [ "$cur" -ne 5 ] && brightnessctl set 5%-'
 
 
 [[block]]
