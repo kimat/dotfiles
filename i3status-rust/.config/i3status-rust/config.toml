@@ -75,6 +75,12 @@ block = "custom"
 command = 'brightnessctl -m | cut -d, -f4 | tr -d %'
 interval = 10
 format = " $text%"
+[[block.click]]
+button = "up"
+cmd = "brightnessctl set +5%"
+[[block.click]]
+button = "down"
+cmd = "brightnessctl set 5%-"
 
 
 [[block]]
