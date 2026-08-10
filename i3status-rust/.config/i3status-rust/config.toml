@@ -72,7 +72,7 @@ format = "$available"
 
 [[block]]
 block = "custom"
-command = 'light | sed -r "s,\..*,,g"'
+command = 'brightnessctl -m | cut -d, -f4 | tr -d %'
 interval = 10
 format = " $text%"
 
