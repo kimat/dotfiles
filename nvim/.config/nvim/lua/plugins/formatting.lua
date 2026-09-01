@@ -23,6 +23,7 @@ require("conform").setup {
     nix = { "nixfmt" },
     javascript = { "prettier" },
     json = { "jq" },
+    toml = { "taplo" },
     yaml = { "prettier" },
     xml = { "xmllint" },
     just = { "just" },
