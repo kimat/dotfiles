@@ -77,7 +77,8 @@ bind main <F4> !git difftool -d %(commit)^!
 
 # Yank Commit numbers
 bind main y !@bash -c "echo -n `echo %(commit) | cut -c 1-7` | copy" # copy (yank) commid hash to clipboard (truncated to 7 chars)
-bind main Y !@bash -c "echo -n %(commit) | copy" # copy (yank) commid hash to clipboard
+bind main Y !@bash -c "echo -n \"@$(git rev-parse --show-toplevel) $(echo %(commit) | cut -c 1-7)\" | copy" # copy (yank) '@<git-project-root> <short-hash>' to clipboard
+bind main m !@bash -c "git log -1 --format=%B %(commit) | copy" # copy (yank) the full commit message to clipboard
 
 # Disable some defaults
 bind main H none
