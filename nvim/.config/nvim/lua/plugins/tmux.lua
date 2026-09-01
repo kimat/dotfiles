@@ -10,13 +10,9 @@ Map("n", "ex", "<Cmd>SlimuxGlobalConfigure<CR>")
 Map(
   "n",
   "ej",
-  ':let @t=expand("%:.").":".line(".")<CR>:SlimuxShellRun spring rspec <c-r>t<CR>'
+  ':let @t=expand("%:.").":".line(".")<CR>:SlimuxShellRun rails test <c-r>t<CR>'
 )
-Map(
-  "n",
-  "eJ",
-  ':let @t=expand("%:.")<CR>:SlimuxShellRun spring rspec <c-r>t<CR>'
-)
+Map("n", "eJ", ':let @t=expand("%:.")<CR>:SlimuxShellRun rails test <c-r>t<CR>')
 -- map <localleader>J :let @t=expand("%:.")<CR>:SlimuxShellRun spring rspec <c-r>t<CR>
 -- map <localleader>u :let @t=expand("%:.")<CR>:SlimuxShellRun cucumber -p local <c-r>t<CR>
 -- map <localleader>U :let @t=expand("%:.")<CR>:SlimuxShellRun cucumber -p local <c-r>t<CR>
