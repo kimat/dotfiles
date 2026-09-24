@@ -27,6 +27,7 @@ require("conform").setup {
     yaml = { "prettier" },
     xml = { "xmllint" },
     just = { "just" },
+    hurl = { "hurlfmt" },
   },
   format_on_save = function(bufnr)
     if string.match(vim.fn.getcwd(), "/home.*/dev/nix/.*") then
